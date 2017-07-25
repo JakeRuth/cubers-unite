@@ -1,6 +1,6 @@
 # cubers-unite
 A web app that gives cubers around the world the ability to solve puzzles together in real time.
-See the work in progress documentation/spec here: https://drive.google.com/open?id=133T5peH2An4hNFnU2G2t4X8T4YJHNOyuVFVjU8h1A28
+See the work in progress documentation/spec here: https://drive.google.com/drive/folders/0BzeuO4QnYgP3a2tCQ1kyUEpQems
 
 At the moment I am learning all about AWS services that we will use to host this, but this is the rough overview of what this project will be built with:
 
