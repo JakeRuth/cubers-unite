@@ -1,2 +1,2 @@
 # cubers-unite
-A web app that allows cubers around the world to create
+A web app that gives cubers around the world the ability to solve puzzles together in real time.
