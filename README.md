@@ -13,5 +13,5 @@ Infrastructure (110% hosted with AWS, main goal is to be very cheap to host):
 
 Tech Stack (for now I'm keeping this list super abstracted):
 - Python: Backend Lambda functions
-- ReactJS/Redux: Front-end website
+- ReactJS/Redux: Front-end website (See the [README](https://github.com/JakeRuth/cubers-unite/tree/master/website) for more information!)
 - Cloudfront templates: Programatic way to handle aws services (I believe these can be generated with AWS but I'm not positive)
