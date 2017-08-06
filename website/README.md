@@ -6,18 +6,16 @@ This folder contains a [ReactJS](https://facebook.github.io/react/) project, 'co
 Table of contents
 =================
   
-  * [Getting started](#getting-started)
+  * [Tech stack](#tech-stack)
   * [How to run website on your computer](#how-to-run-website-on-your-computer)
   * [How was this created?](#scaffolding-aka-how-was-this-created)
 
-### Getting Started
-If you'd like to contribute to this project, the only things you need to understand are:
+### Tech stack
 - Basic web programming (HTML/CSS/JS)
-  - If you have little to no web programming experience, your best bet is to just Google for tutorials on HTML/CSS/JS
-- ***[ReactJS](https://facebook.github.io/react/): This basically the 'framework' for this entire folder!!!
-  - If you are new to ReactJS I *strongly* suggest spending time (yes, there is a learning curve for newbies) going through the GREAT tutorials ReactJS has on their website, here is the starting point: https://facebook.github.io/react/docs/hello-world.html
-  - If you have NO JavaScript experience learning ReactJS could be a bit aggressive, consider learning basic JavaScript skills before taking on ReactJS.
-- In my opinion, for the average contributor there's no need to fully understand or become an expert on [Babel](https://webpack.github.io/) and [Webpack](https://webpack.github.io/) but it is nice to understand their purpose.
+- [ReactJS](https://facebook.github.io/react/)
+  - Get started: https://facebook.github.io/react/docs/hello-world.html
+- [Babel](https://webpack.github.io/)
+- [Webpack](https://webpack.github.io/)
 
 ### How to run website on your computer
 - Make sure you have [NodeJS](https://nodejs.org/en/) installed on your computer.
