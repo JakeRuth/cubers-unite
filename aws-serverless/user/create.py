@@ -1,8 +1,6 @@
 import json
 
 def create(event, context):
-    print(event)
-
     body = {
         "message": "Testing",
         "input": event
