@@ -1,3 +1,13 @@
-.app-container {
-  text-align: center;
+/*
+ * Color pallette:
+ *  #4ABDAC
+ *  #FC4A1A
+ *  #F78733
+ *  #DfDCF3
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
