@@ -1,0 +1,30 @@
+service: user
+
+provider:
+  name: aws
+  runtime: python3.6
+
+functions:
+  create:
+    handler: create.create
+    description: Create a user and send a verification email to them to activate their account.
+    events:
+      - http:
+          path: user/create
+          method: post
+
+resources:
+  Resources:
+    userTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: User
+        AttributeDefinitions:
+          - AttributeName: email
+            AttributeType: S
+        KeySchema:
+          - AttributeName: email
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
