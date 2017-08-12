@@ -20,11 +20,7 @@ resources:
       Properties:
         TableName: User
         AttributeDefinitions:
-          - AttributeName: username
-            AttributeType: S
           - AttributeName: email
-            AttributeType: S
-          - AttributeName: password
             AttributeType: S
         KeySchema:
           - AttributeName: email
