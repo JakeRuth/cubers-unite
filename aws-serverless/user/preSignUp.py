@@ -1,6 +1,6 @@
 import json
 
-def create(event, context):
+def handler(event, context):
     body = {
         "message": "Testing",
         "input": event
