@@ -9,9 +9,9 @@ functions:
     handler: preSignUp.handler
     description: Triggered directly before sign up email is sent to new user.
     events:
-      - http:
-          path: user/create
-          method: post
+      - cognitoUserPool:
+          pool: user-cubers-unite-basic
+          trigger: PreSignUp
 
 resources:
   Resources:

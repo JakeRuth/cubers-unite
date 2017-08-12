@@ -2,7 +2,7 @@ import json
 
 def handler(event, context):
     body = {
-        "message": "Testing",
+        "message": "Pre sign up triggered!",
         "input": event
     }
 
