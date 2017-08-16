@@ -7,7 +7,7 @@ const initialState = {
 };
 
 function signUpReducer(state = initialState, action) {
-	switch(action) {
+	switch(action.type) {
 		case UPDATE_EMAIL:
 			return {
 				...state,

@@ -2,23 +2,23 @@ export const UPDATE_EMAIL = 'UPDATE_EMAIL';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 
-export function updateEmail(text) {
+export function updateEmail(event) {
 	return {
 		type: UPDATE_EMAIL,
-		text: text,
+		text: event.target.value,
 	};
 }
 
-export function updateUsername(text) {
+export function updateUsername(event) {
 	return {
 		type: UPDATE_USERNAME,
-		text: text,
+		text: event.target.value,
 	};
 }
 
-export function updatePassword(text) {
+export function updatePassword(event) {
 	return {
 		type: UPDATE_PASSWORD,
-		text: text,
+		text: event.target.value,
 	};
 }
