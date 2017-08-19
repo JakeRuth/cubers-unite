@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import Spinner from '../common/Spinner';
+
 import {updateEmail, updateUsername, updatePassword, signUp} from './Actions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
@@ -13,7 +15,15 @@ class SignUpPageComponent extends React.Component {
     this.props.signUp(this.props.username, this.props.email, this.props.password);
   };
 
-  render() {
+  renderSpinner() {
+    return (
+      <div className="spinner-container">
+        <Spinner/>
+      </div>
+    );
+  }
+
+  renderForm() {
     return (
       <form className="sign-up-page-container pure-form pure-form-aligned">
           <div className="pure-control-group">
@@ -49,6 +59,25 @@ class SignUpPageComponent extends React.Component {
             Submit
           </button>
       </form>
+    );
+  }
+
+  render() {
+    let content;
+
+    switch(this.props.signUpRequestStatus) {
+      case ASYNC_STATUS.IN_FLIGHT:
+        content = this.renderSpinner();
+        break;
+      default:
+        content = this.renderForm();
+        break;
+    }
+
+    return (
+      <div className="sign-up-page-container">
+        {content}
+      </div>
     );
   }
 }

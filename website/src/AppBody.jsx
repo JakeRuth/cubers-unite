@@ -11,11 +11,11 @@ import './AppBody.css';
 class AppBodyComponent extends React.Component {
   render() {
     let content;
-    if (this.props.signUpRequest !== ASYNC_STATUS.SUCCESS) {
+    if (this.props.signUpRequestStatus !== ASYNC_STATUS.SUCCESS) {
       content = <SignUpPage/>;
     } else {
       // for now default to this component since this is in mid-development and there are no other pages yet
-      content = <SignUpPage/>;
+      content = "Success! Email sent!  Better UI to come...";
     }
 
     return (
