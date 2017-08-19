@@ -10,7 +10,7 @@ import './SignUpPage.css';
 
 class SignUpPageComponent extends React.Component {
   signUp = () => {
-    this.props.signUp(this.props.username, this.props.email, this.props.password)
+    this.props.signUp(this.props.username, this.props.email, this.props.password);
   };
 
   render() {
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
   return {
     ...state.signUp,
   };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -77,8 +77,7 @@ const mapDispatchToProps = (dispatch) => {
       updatePassword: (event) => dispatch(updatePassword(event)),
       signUp: (username, email, password) => dispatch(signUp(username, email, password)),
   };
-}
+};
 
-const SignUpPage = connect(mapStateToProps, mapDispatchToProps)(SignUpPageComponent)
-
+const SignUpPage = connect(mapStateToProps, mapDispatchToProps)(SignUpPageComponent);
 export default SignUpPage;
