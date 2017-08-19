@@ -1,0 +1,12 @@
+.confirm-sign-up-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 216px;
+}
+
+.confirm-sign-up-form-label {
+  color: #DfDCF3;
+  font-size: 20px;
+  margin-bottom: 10px;
+}

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
 
-import {updateEmail, updateUsername, updatePassword, signUp} from './Actions.js';
+import {updateEmail, updateUsername, updatePassword, signUp} from '../actions/SignUpActions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
@@ -75,7 +75,7 @@ class SignUpPageComponent extends React.Component {
     }
 
     return (
-      <div className="sign-up-page-container">
+      <div>
         {content}
       </div>
     );

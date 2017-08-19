@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import SignUpPage from './sign-up/SignUpPage.jsx';
+import SignUpPage from './sign-up/SignUpPage';
+import ConfirmSignUpPage from './sign-up/ConfirmSignUpPage';
 
 import {ASYNC_STATUS} from './constants/AsyncStatus';
 
@@ -13,9 +14,8 @@ class AppBodyComponent extends React.Component {
     let content;
     if (this.props.signUpRequestStatus !== ASYNC_STATUS.SUCCESS) {
       content = <SignUpPage/>;
-    } else {
-      // for now default to this component since this is in mid-development and there are no other pages yet
-      content = "Success! Email sent!  Better UI to come...";
+    } else if (this.props.confirmSignUpRequestStatus) {
+      content = <ConfirmSignUpPage/>;
     }
 
     return (
@@ -28,11 +28,13 @@ class AppBodyComponent extends React.Component {
 
 AppBodyComponent.propTypes = {
   signUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
+  confirmSignUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     signUpRequestStatus: state.signUp.signUpRequestStatus,
+    confirmSignUpRequestStatus: state.confirmSignUp.confirmSignUpRequestStatus,
   };
 };
 

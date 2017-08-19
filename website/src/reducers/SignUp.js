@@ -3,7 +3,7 @@ import {
 	UPDATE_USERNAME,
 	UPDATE_PASSWORD,
 	SIGN_UP_REQUEST_UPDATE,
-} from '../sign-up/Actions.js';
+} from '../actions/SignUpActions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
