@@ -1,9 +1,18 @@
-import {UPDATE_EMAIL, UPDATE_USERNAME, UPDATE_PASSWORD} from '../sign-up/Actions.js';
+import {
+	UPDATE_EMAIL,
+	UPDATE_USERNAME,
+	UPDATE_PASSWORD,
+	SIGN_UP_REQUEST_UPDATE,
+} from '../sign-up/Actions.js';
+
+import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
 const initialState = {
 	email: '',
 	username: '',
 	password: '',
+	signUpRequestStatus: ASYNC_STATUS.READY,
+	user: null,
 };
 
 function signUpReducer(state = initialState, action) {
@@ -23,6 +32,12 @@ function signUpReducer(state = initialState, action) {
 				...state,
 				password: action.text,
 			};
+		case SIGN_UP_REQUEST_UPDATE:
+			return {
+				...state,
+				signUpRequestStatus: action.status,
+				user: action.user,
+			}
 		default:
 			return state;
 	}

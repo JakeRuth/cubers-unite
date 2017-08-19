@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {updateEmail, updateUsername, updatePassword} from './Actions.js';
+import {updateEmail, updateUsername, updatePassword, signUp} from './Actions.js';
+
+import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
 import './SignUpPage.css';
 
 class SignUpPageComponent extends React.Component {
+  signUp = () => {
+    this.props.signUp(this.props.username, this.props.email, this.props.password)
+  };
+
   render() {
     return (
       <form className="sign-up-page-container pure-form pure-form-aligned">
@@ -29,12 +35,19 @@ class SignUpPageComponent extends React.Component {
           <div className="pure-control-group">
               <input
                 id="password"
+                type="password"
                 placeholder="Password"
                 value={this.props.password}
                 onChange={this.props.updatePassword}
               />
           </div>
-          <button type="submit" className="pure-button pure-button-primary">Submit</button>
+          <button
+            onClick={this.signUp}
+            className="pure-button pure-button-primary"
+            type="button"
+          >
+            Submit
+          </button>
       </form>
     );
   }
@@ -47,6 +60,8 @@ SignUpPageComponent.propTypes = {
   updateUsername: PropTypes.func.isRequired,
   password: PropTypes.string.isRequired,
   updatePassword: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired,
+  signUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -57,9 +72,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      updateEmail: (input) => dispatch(updateEmail(input)),
-      updateUsername: (input) => dispatch(updateUsername(input)),
-      updatePassword: (input) => dispatch(updatePassword(input)),
+      updateEmail: (event) => dispatch(updateEmail(event)),
+      updateUsername: (event) => dispatch(updateUsername(event)),
+      updatePassword: (event) => dispatch(updatePassword(event)),
+      signUp: (username, email, password) => dispatch(signUp(username, email, password)),
   };
 }
 
