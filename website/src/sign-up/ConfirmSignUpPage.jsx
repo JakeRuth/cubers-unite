@@ -67,8 +67,6 @@ class ConfirmSignUpPageComponent extends React.Component {
 }
 
 ConfirmSignUpPageComponent.propTypes = {
-  username: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
   verificationCode: PropTypes.string.isRequired,
   updateVerificationCode: PropTypes.func.isRequired,
   confirmSignUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
