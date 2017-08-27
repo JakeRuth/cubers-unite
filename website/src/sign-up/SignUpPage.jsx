@@ -11,7 +11,7 @@ import {ASYNC_STATUS} from '../constants/AsyncStatus';
 import './SignUpPage.css';
 
 class SignUpPageComponent extends React.Component {
-  signUp = () => {
+  onSignUpSubmit = () => {
     this.props.signUp(this.props.username, this.props.email, this.props.password);
   };
 
@@ -52,7 +52,7 @@ class SignUpPageComponent extends React.Component {
               />
           </div>
           <button
-            onClick={this.signUp}
+            onClick={this.onSignUpSubmit}
             className="pure-button pure-button-primary"
             type="button"
           >

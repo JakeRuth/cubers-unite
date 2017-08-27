@@ -1,3 +1,7 @@
+import {confirmSignUpAwsCognitoUser} from '../aws/aws-cognito-helper';
+
+import {ASYNC_STATUS} from '../constants/AsyncStatus';
+
 export const UPDATE_VERIFICATION_CODE = 'UPDATE_VERIFICATION_CODE';
 export const CONFIRM_SIGN_UP_REQUEST_UPDATE = 'CONFIRM_SIGN_UP_REQUEST_UPDATE';
 
@@ -8,8 +12,28 @@ export function updateVerificationCode(event) {
 	};
 }
 
-export function confirmSignUp(verificationCode) {
+export function confirmSignUp(verificationCode, username) {
 	return (dispatch) => {
-		// TODO
+		dispatch({
+			type: CONFIRM_SIGN_UP_REQUEST_UPDATE,
+			status: ASYNC_STATUS.IN_FLIGHT,
+		});
+
+		confirmSignUpAwsCognitoUser(
+			verificationCode,
+			username,
+			() => {
+				dispatch({
+					type: CONFIRM_SIGN_UP_REQUEST_UPDATE,
+					status: ASYNC_STATUS.SUCCESS,
+				});
+			},
+			() => {
+				dispatch({
+					type: CONFIRM_SIGN_UP_REQUEST_UPDATE,
+					status: ASYNC_STATUS.FAILURE,
+				});
+			},
+		);
 	}
 }

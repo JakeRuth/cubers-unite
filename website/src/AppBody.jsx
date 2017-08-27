@@ -14,8 +14,10 @@ class AppBodyComponent extends React.Component {
     let content;
     if (this.props.signUpRequestStatus !== ASYNC_STATUS.SUCCESS) {
       content = <SignUpPage/>;
-    } else if (this.props.confirmSignUpRequestStatus) {
+    } else if (this.props.confirmSignUpRequestStatus !== ASYNC_STATUS.SUCCESS) {
       content = <ConfirmSignUpPage/>;
+    } else {
+      content = 'Time to make the login form :)';
     }
 
     return (

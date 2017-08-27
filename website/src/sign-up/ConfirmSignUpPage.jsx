@@ -4,13 +4,17 @@ import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
 
-import {updateVerificationCode} from '../actions/ConfirmSignUpActions.js';
+import {updateVerificationCode, confirmSignUp} from '../actions/ConfirmSignUpActions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
 import './ConfirmSignUpPage.css';
 
 class ConfirmSignUpPageComponent extends React.Component {
+  onConfirmSignUpSubmit = () => {
+    this.props.confirmSignUp(this.props.verificationCode, this.props.username);
+  };
+
   renderSpinner() {
     return (
       <div className="spinner-container">
@@ -35,7 +39,7 @@ class ConfirmSignUpPageComponent extends React.Component {
             />
           </div>
           <button
-            onClick={() => null}
+            onClick={this.onConfirmSignUpSubmit}
             className="pure-button pure-button-primary"
             type="button"
           >
@@ -67,8 +71,11 @@ class ConfirmSignUpPageComponent extends React.Component {
 }
 
 ConfirmSignUpPageComponent.propTypes = {
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   verificationCode: PropTypes.string.isRequired,
   updateVerificationCode: PropTypes.func.isRequired,
+  confirmSignUp: PropTypes.func.isRequired,
   confirmSignUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
@@ -83,6 +90,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateVerificationCode: (event) => dispatch(updateVerificationCode(event)),
+    confirmSignUp: (verificationCode, username) => dispatch(confirmSignUp(verificationCode, username)),
   };
 };
 

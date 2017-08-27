@@ -1,4 +1,8 @@
-import {CognitoUserPool, CognitoUserAttribute} from 'amazon-cognito-identity-js';
+import {
+  CognitoUser,
+  CognitoUserPool,
+  CognitoUserAttribute,
+} from 'amazon-cognito-identity-js';
 
 const poolData = {
   UserPoolId : 'us-east-1_dpklMirbO',
@@ -23,6 +27,22 @@ export function signUpAwsCognitoUser(email, username, password, successCallback,
 			failureCallBack();
     } else {
       successCallback(result.user);
+    }
+  });
+}
+
+export function confirmSignUpAwsCognitoUser(verificationCode, username, successCallback, failureCallBack) {
+  const cognitoUser = new CognitoUser({
+    Username: username,
+    Pool: new CognitoUserPool(poolData),
+  })
+
+  cognitoUser.confirmRegistration(verificationCode, false, function(err, result) {
+    if (err) {
+      alert(err);
+      failureCallBack();
+    } else {
+      successCallback();
     }
   });
 }
