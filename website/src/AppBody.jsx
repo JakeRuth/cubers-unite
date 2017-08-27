@@ -12,12 +12,14 @@ import './AppBody.css';
 class AppBodyComponent extends React.Component {
   render() {
     let content;
-    if (this.props.signUpRequestStatus !== ASYNC_STATUS.SUCCESS) {
-      content = <SignUpPage/>;
-    } else if (this.props.confirmSignUpRequestStatus !== ASYNC_STATUS.SUCCESS) {
+    if (this.props.signUpRequestStatus === ASYNC_STATUS.SUCCESS &&
+        this.props.confirmSignUpRequestStatus === ASYNC_STATUS.SUCCESS) {
+      content = 'Time to make the login form :)';
+    }
+    else if (this.props.signUpRequestStatus === ASYNC_STATUS.SUCCESS || this.props.skipSignUpForm) {
       content = <ConfirmSignUpPage/>;
     } else {
-      content = 'Time to make the login form :)';
+      content = <SignUpPage/>;
     }
 
     return (
@@ -30,12 +32,14 @@ class AppBodyComponent extends React.Component {
 
 AppBodyComponent.propTypes = {
   signUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
+  skipSignUpForm: PropTypes.bool.isRequired,
   confirmSignUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     signUpRequestStatus: state.signUp.signUpRequestStatus,
+    skipSignUpForm: state.signUp.skipForm,
     confirmSignUpRequestStatus: state.confirmSignUp.confirmSignUpRequestStatus,
   };
 };

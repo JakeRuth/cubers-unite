@@ -4,7 +4,13 @@ import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
 
-import {updateEmail, updateUsername, updatePassword, signUp} from '../actions/SignUpActions.js';
+import {
+  updateEmail,
+  updateUsername,
+  updatePassword,
+  skipToConfirmationForm,
+  signUp,
+} from '../actions/SignUpActions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
@@ -13,6 +19,10 @@ import './SignUpPage.css';
 class SignUpPageComponent extends React.Component {
   onSignUpSubmit = () => {
     this.props.signUp(this.props.username, this.props.email, this.props.password);
+  };
+
+  skipToConfirmationForm = () => {
+    this.props.skipToConfirmationForm();
   };
 
   renderSpinner() {
@@ -61,7 +71,12 @@ class SignUpPageComponent extends React.Component {
               Submit
             </button>
         </form>
-        <p className="token-form-link">Already have a verification code? Click here.</p>
+        <p
+          onClick={this.skipToConfirmationForm}
+          className="token-form-link"
+        >
+          Already have a verification code? Click here.
+        </p>
       </div>
     );
   }
@@ -108,6 +123,7 @@ const mapDispatchToProps = (dispatch) => {
       updateEmail: (event) => dispatch(updateEmail(event)),
       updateUsername: (event) => dispatch(updateUsername(event)),
       updatePassword: (event) => dispatch(updatePassword(event)),
+      skipToConfirmationForm: () => dispatch(skipToConfirmationForm()),
       signUp: (username, email, password) => dispatch(signUp(username, email, password)),
   };
 };
