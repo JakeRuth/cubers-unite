@@ -1,10 +1,26 @@
 .sign-up-page-container {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  width: 216px;
+}
+
+.sign-up-form-label {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 17px;
+  color: #FC4A1A;
 }
 
 .spinner-container {
   position: relative;
   top: 30px;
   right: 30px;
+}
+
+.token-form-link {
+  text-align: center;
+  font-size: 17px;
+  color: #FC4A1A;
+  margin-top: 5px;
 }

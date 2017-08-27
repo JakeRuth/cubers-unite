@@ -1,10 +1,14 @@
 /*
  * Color pallette:
- *  #4ABDAC
- *  #FC4A1A
- *  #F78733
- *  #DfDCF3
+ *  #4ABDAC green-blueish
+ *  #FC4A1A red
+ *  #F78733 orange
+ *  #DfDCF3 light purple
  */
+
+html {
+  background-color: #DfDCF3;
+}
 
 body {
   margin: 0;
