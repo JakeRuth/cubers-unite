@@ -1,11 +1,13 @@
 import {combineReducers} from 'redux';
 
-import signUpReducer from './SignUp';
+import appBodyReducer from './AppBodyReducer';
 import confirmSignUpReducer from './ConfirmSignUp';
+import signUpReducer from './SignUp';
 
 const AppReducer = combineReducers({
-	signUp: signUpReducer,
+	appBody: appBodyReducer,
 	confirmSignUp: confirmSignUpReducer,
+	signUp: signUpReducer,
 });
 
 export default AppReducer;

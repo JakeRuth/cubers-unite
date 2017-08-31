@@ -10,13 +10,23 @@ import {
   updatePassword,
   skipToConfirmationForm,
   signUp,
-} from '../actions/SignUpActions.js';
+} from '../actions/SignUpActions';
+import {updateUnAuthPage} from '../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
+import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 
 import './SignUpPage.css';
 
 class SignUpPageComponent extends React.Component {
+  componentWillReceiveProps = (nextProps) => {
+    // On successful sign up, go to the confirm sign up page
+    if (this.props.signUpRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
+        nextProps.signUpRequestStatus === ASYNC_STATUS.SUCCESS) {
+      this.props.updateUnAuthPage(UN_AUTH_PAGE.CONFIRM_SIGN_UP);
+    }
+  }
+
   onSignUpSubmit = () => {
     this.props.signUp(this.props.username, this.props.email, this.props.password);
   };
@@ -87,13 +97,10 @@ class SignUpPageComponent extends React.Component {
   render() {
     let content;
 
-    switch(this.props.signUpRequestStatus) {
-      case ASYNC_STATUS.IN_FLIGHT:
-        content = this.renderSpinner();
-        break;
-      default:
-        content = this.renderContent();
-        break;
+    if (this.props.signUpRequestStatus === ASYNC_STATUS.IN_FLIGHT) {
+      content = this.renderSpinner();
+    } else {
+      content = this.renderContent();
     }
 
     return (
@@ -128,6 +135,7 @@ const mapDispatchToProps = (dispatch) => {
       updatePassword: (event) => dispatch(updatePassword(event)),
       skipToConfirmationForm: () => dispatch(skipToConfirmationForm()),
       signUp: (username, email, password) => dispatch(signUp(username, email, password)),
+      updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
   };
 };
 
