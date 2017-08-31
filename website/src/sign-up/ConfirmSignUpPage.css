@@ -6,7 +6,25 @@
 }
 
 .confirm-sign-up-form-label {
-  color: #DfDCF3;
-  font-size: 20px;
+  text-align: center;
   margin-bottom: 10px;
+  font-size: 17px;
+  color: #FC4A1A;
+}
+
+.confirm-sign-up-page-spinner-container {
+  position: relative;
+  top: 30px;
+  right: 30px;
+}
+
+.confirm-sign-up-page-skip-message {
+  text-align: center;
+  font-size: 17px;
+  color: #FC4A1A;
+  margin-top: 5px;
+}
+
+.confirm-sign-up-page-token-form-link {
+  cursor: pointer;
 }

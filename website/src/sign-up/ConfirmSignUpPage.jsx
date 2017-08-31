@@ -15,9 +15,13 @@ class ConfirmSignUpPageComponent extends React.Component {
     this.props.confirmSignUp(this.props.verificationCode, this.props.username);
   };
 
+  goToSignUpForm = () => {
+    
+  };
+
   renderSpinner() {
     return (
-      <div className="spinner-container">
+      <div className="confirm-sign-up-page-spinner-container">
         <Spinner/>
       </div>
     );
@@ -46,6 +50,16 @@ class ConfirmSignUpPageComponent extends React.Component {
             Submit
           </button>
         </form>
+        <p className="confirm-sign-up-page-skip-message">
+          No verification code?
+          <span
+            className="confirm-sign-up-page-token-form-link"
+            onClick={this.goToSignUpForm}
+          >
+            {' Click here '}
+          </span>
+          to sign up.
+        </p>
       </div>
     );
   }

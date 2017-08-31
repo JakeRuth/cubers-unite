@@ -27,7 +27,7 @@ class SignUpPageComponent extends React.Component {
 
   renderSpinner() {
     return (
-      <div className="spinner-container">
+      <div className="sign-up-page-spinner-container">
         <Spinner/>
       </div>
     );
@@ -71,11 +71,14 @@ class SignUpPageComponent extends React.Component {
               Submit
             </button>
         </form>
-        <p
-          onClick={this.skipToConfirmationForm}
-          className="token-form-link"
-        >
-          Already have a verification code? Click here.
+        <p className="sign-up-page-skip-message">
+          Already have a verification code?
+          <span
+            className="sign-up-page-token-form-link"
+            onClick={this.skipToConfirmationForm}
+          >
+            {' Click here.'}
+          </span>
         </p>
       </div>
     );
