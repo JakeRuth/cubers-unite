@@ -5,7 +5,6 @@ import {ASYNC_STATUS} from '../constants/AsyncStatus';
 export const UPDATE_EMAIL = 'UPDATE_EMAIL';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-export const SKIP_TO_CONFIRMATION_FORM = 'SKIP_TO_CONFIRMATION_FORM';
 export const SIGN_UP_REQUEST_UPDATE = 'SIGN_UP_REQUEST_UPDATE';
 
 export function updateEmail(event) {
@@ -26,12 +25,6 @@ export function updatePassword(event) {
 	return {
 		type: UPDATE_PASSWORD,
 		text: event.target.value,
-	};
-}
-
-export function skipToConfirmationForm() {
-	return {
-		type: SKIP_TO_CONFIRMATION_FORM,
 	};
 }
 

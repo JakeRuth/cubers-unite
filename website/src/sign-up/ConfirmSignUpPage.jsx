@@ -5,8 +5,10 @@ import {connect} from 'react-redux';
 import Spinner from '../common/Spinner';
 
 import {updateVerificationCode, confirmSignUp} from '../actions/ConfirmSignUpActions.js';
+import {updateUnAuthPage} from '../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
+import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 
 import './ConfirmSignUpPage.css';
 
@@ -16,7 +18,7 @@ class ConfirmSignUpPageComponent extends React.Component {
   };
 
   goToSignUpForm = () => {
-    
+    this.props.updateUnAuthPage(UN_AUTH_PAGE.SIGN_UP);
   };
 
   renderSpinner() {
@@ -105,6 +107,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateVerificationCode: (event) => dispatch(updateVerificationCode(event)),
     confirmSignUp: (verificationCode, username) => dispatch(confirmSignUp(verificationCode, username)),
+    updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
   };
 };
 

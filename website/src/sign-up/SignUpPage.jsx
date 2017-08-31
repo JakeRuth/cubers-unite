@@ -8,7 +8,6 @@ import {
   updateEmail,
   updateUsername,
   updatePassword,
-  skipToConfirmationForm,
   signUp,
 } from '../actions/SignUpActions';
 import {updateUnAuthPage} from '../actions/AppBodyActions';
@@ -32,7 +31,7 @@ class SignUpPageComponent extends React.Component {
   };
 
   skipToConfirmationForm = () => {
-    this.props.skipToConfirmationForm();
+    this.props.updateUnAuthPage(UN_AUTH_PAGE.CONFIRM_SIGN_UP);
   };
 
   renderSpinner() {
@@ -133,7 +132,6 @@ const mapDispatchToProps = (dispatch) => {
       updateEmail: (event) => dispatch(updateEmail(event)),
       updateUsername: (event) => dispatch(updateUsername(event)),
       updatePassword: (event) => dispatch(updatePassword(event)),
-      skipToConfirmationForm: () => dispatch(skipToConfirmationForm()),
       signUp: (username, email, password) => dispatch(signUp(username, email, password)),
       updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
   };

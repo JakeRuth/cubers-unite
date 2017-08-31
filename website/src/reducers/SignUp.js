@@ -3,7 +3,6 @@ import {
 	UPDATE_USERNAME,
 	UPDATE_PASSWORD,
 	SIGN_UP_REQUEST_UPDATE,
-	SKIP_TO_CONFIRMATION_FORM,
 } from '../actions/SignUpActions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
@@ -14,7 +13,6 @@ const initialState = {
 	password: '',
 	signUpRequestStatus: ASYNC_STATUS.READY,
 	user: null,
-	skipForm: false,
 };
 
 function signUpReducer(state = initialState, action) {
@@ -33,11 +31,6 @@ function signUpReducer(state = initialState, action) {
 			return {
 				...state,
 				password: action.text,
-			};
-		case SKIP_TO_CONFIRMATION_FORM:
-			return {
-				...state,
-				skipForm: true,
 			};
 		case SIGN_UP_REQUEST_UPDATE:
 			return {
