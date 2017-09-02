@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
 
-import {updateVerificationCode, confirmSignUp} from '../actions/ConfirmSignUpActions.js';
+import {updateUsername, updateVerificationCode, confirmSignUp} from '../actions/ConfirmSignUpActions.js';
 import {updateUnAuthPage} from '../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
@@ -14,7 +14,8 @@ import './ConfirmSignUpPage.css';
 
 class ConfirmSignUpPageComponent extends React.Component {
   onConfirmSignUpSubmit = () => {
-    this.props.confirmSignUp(this.props.verificationCode, this.props.username);
+    let username = this.props.username ? this.props.username : this.props.usernameFromSignUp;
+    this.props.confirmSignUp(this.props.verificationCode, username);
   };
 
   goToSignUpForm = () => {
@@ -30,12 +31,32 @@ class ConfirmSignUpPageComponent extends React.Component {
   }
 
   renderForm() {
+    let formMessage, usernameInputComponent;
+
+    // username and email aren't required since it's possible to skip the sign up page
+    if (this.props.email && this.props.usernameFromSignUp) {
+      formMessage = `An email with a verification code has been sent to ${this.props.email} for ${this.props.usernameFromSignUp}.`;
+    } else {
+      formMessage = 'Please enter the username you sign up with, as well as the verification code sent to your email.';
+      usernameInputComponent = (
+        <div className="pure-control-group">
+          <input
+            id="username"
+            placeholder="Username"
+            value={this.props.username}
+            onChange={this.props.updateUsername}
+          />
+        </div>
+      );
+    }
+
     return (
       <div>
         <div className="confirm-sign-up-form-label">
-          {`An email with a verification code has been sent to ${this.props.email} for ${this.props.username}.`}
+          {formMessage}
         </div>
         <form className="confirm-sign-up-form pure-form pure-form-aligned">
+          {usernameInputComponent}
           <div className="pure-control-group">
             <input
               id="verificationCode"
@@ -87,9 +108,11 @@ class ConfirmSignUpPageComponent extends React.Component {
 }
 
 ConfirmSignUpPageComponent.propTypes = {
-  username: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  verificationCode: PropTypes.string.isRequired,
+  usernameFromSignUp: PropTypes.string,
+  email: PropTypes.string,
+  username: PropTypes.string,
+  updateUsername: PropTypes.func.isRequired,
+  verificationCode: PropTypes.string,
   updateVerificationCode: PropTypes.func.isRequired,
   confirmSignUp: PropTypes.func.isRequired,
   confirmSignUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
@@ -98,13 +121,14 @@ ConfirmSignUpPageComponent.propTypes = {
 const mapStateToProps = (state) => {
   return {
     ...state.confirmSignUp,
-    username: state.signUp.username,
+    usernameFromSignUp: state.signUp.username,
     email: state.signUp.email,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    updateUsername: (event) => dispatch(updateUsername(event)),
     updateVerificationCode: (event) => dispatch(updateVerificationCode(event)),
     confirmSignUp: (verificationCode, username) => dispatch(confirmSignUp(verificationCode, username)),
     updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),

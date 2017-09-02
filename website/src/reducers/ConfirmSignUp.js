@@ -1,4 +1,5 @@
 import {
+	UPDATE_USERNAME_CODE,
 	UPDATE_VERIFICATION_CODE,
 	CONFIRM_SIGN_UP_REQUEST_UPDATE,
 } from '../actions/ConfirmSignUpActions.js';
@@ -6,12 +7,18 @@ import {
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
 const initialState = {
+	username: '',
 	verificationCode: '',
 	confirmSignUpRequestStatus: ASYNC_STATUS.READY,
 };
 
 function confirmSignUpReducer(state = initialState, action) {
 	switch(action.type) {
+		case UPDATE_USERNAME_CODE:
+			return {
+				...state,
+				username: action.text,
+			};
 		case UPDATE_VERIFICATION_CODE:
 			return {
 				...state,

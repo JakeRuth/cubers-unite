@@ -2,8 +2,16 @@ import {confirmSignUpAwsCognitoUser} from '../aws/aws-cognito-helper';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
+export const UPDATE_USERNAME_CODE = 'UPDATE_USERNAME_CODE';
 export const UPDATE_VERIFICATION_CODE = 'UPDATE_VERIFICATION_CODE';
 export const CONFIRM_SIGN_UP_REQUEST_UPDATE = 'CONFIRM_SIGN_UP_REQUEST_UPDATE';
+
+export function updateUsername(event) {
+	return {
+		type: UPDATE_USERNAME_CODE,
+		text: event.target.value,
+	};
+}
 
 export function updateVerificationCode(event) {
 	return {
