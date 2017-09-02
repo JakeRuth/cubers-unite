@@ -13,6 +13,14 @@ import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 import './ConfirmSignUpPage.css';
 
 class ConfirmSignUpPageComponent extends React.Component {
+  componentWillReceiveProps = (nextProps) => {
+    // On successful confirm sign up, go to the login page
+    if (this.props.confirmSignUpRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
+        nextProps.confirmSignUpRequestStatus === ASYNC_STATUS.SUCCESS) {
+      this.props.updateUnAuthPage(UN_AUTH_PAGE.LOGIN);
+    }
+  }
+
   onConfirmSignUpSubmit = () => {
     let username = this.props.username ? this.props.username : this.props.usernameFromSignUp;
     this.props.confirmSignUp(this.props.verificationCode, username);
