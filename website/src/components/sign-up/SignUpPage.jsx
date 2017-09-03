@@ -9,11 +9,11 @@ import {
   updateUsername,
   updatePassword,
   signUp,
-} from '../actions/SignUpActions';
-import {updateUnAuthPage} from '../actions/AppBodyActions';
+} from '../../actions/SignUpActions';
+import {updateUnAuthPage} from '../../actions/AppBodyActions';
 
-import {ASYNC_STATUS} from '../constants/AsyncStatus';
-import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
+import {ASYNC_STATUS} from '../../constants/AsyncStatus';
+import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
 import './SignUpPage.css';
 

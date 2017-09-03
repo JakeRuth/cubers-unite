@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
 
-import {updateUsername, updateVerificationCode, confirmSignUp} from '../actions/ConfirmSignUpActions.js';
-import {updateUnAuthPage} from '../actions/AppBodyActions';
+import {updateUsername, updateVerificationCode, confirmSignUp} from '../../actions/ConfirmSignUpActions.js';
+import {updateUnAuthPage} from '../../actions/AppBodyActions';
 
-import {ASYNC_STATUS} from '../constants/AsyncStatus';
-import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
+import {ASYNC_STATUS} from '../../constants/AsyncStatus';
+import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
 import './ConfirmSignUpPage.css';
 
