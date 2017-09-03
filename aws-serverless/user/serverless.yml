@@ -3,15 +3,19 @@ service: user
 provider:
   name: aws
   runtime: python3.6
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:table/User"
 
 functions:
-  preSignUp:
-    handler: preSignUp.handler
-    description: Triggered directly before sign up email is sent to new user.
+  postConfirmation:
+    handler: postConfirmation.handler
     events:
       - cognitoUserPool:
-          pool: user-cubers-unite-basic
-          trigger: PreSignUp
+          pool: cubers-unite-main
+          trigger: PostConfirmation
 
 resources:
   Resources:
