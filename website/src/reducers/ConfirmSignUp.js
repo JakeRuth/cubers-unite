@@ -1,5 +1,5 @@
 import {
-	UPDATE_USERNAME_CODE,
+	UPDATE_USERNAME,
 	UPDATE_VERIFICATION_CODE,
 	CONFIRM_SIGN_UP_REQUEST_UPDATE,
 } from '../actions/ConfirmSignUpActions.js';
@@ -14,7 +14,7 @@ const initialState = {
 
 function confirmSignUpReducer(state = initialState, action) {
 	switch(action.type) {
-		case UPDATE_USERNAME_CODE:
+		case UPDATE_USERNAME:
 			return {
 				...state,
 				username: action.text,

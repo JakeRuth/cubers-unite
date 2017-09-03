@@ -2,10 +2,10 @@ import {signUpAwsCognitoUser} from '../aws/aws-cognito-helper';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 
-export const UPDATE_EMAIL = 'UPDATE_EMAIL';
-export const UPDATE_USERNAME = 'UPDATE_USERNAME';
-export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-export const SIGN_UP_REQUEST_UPDATE = 'SIGN_UP_REQUEST_UPDATE';
+export const UPDATE_EMAIL = 'signUp/UPDATE_EMAIL';
+export const UPDATE_USERNAME = 'signUp/UPDATE_USERNAME';
+export const UPDATE_PASSWORD = 'signUp/UPDATE_PASSWORD';
+export const SIGN_UP_REQUEST_UPDATE = 'signUp/SIGN_UP_REQUEST_UPDATE';
 
 export function updateEmail(event) {
 	return {

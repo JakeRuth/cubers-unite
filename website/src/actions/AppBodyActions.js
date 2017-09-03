@@ -1,4 +1,4 @@
-export const UPDATE_UN_AUTH_PAGE = 'UPDATE_UN_AUTH_PAGE';
+export const UPDATE_UN_AUTH_PAGE = 'appBody/UPDATE_UN_AUTH_PAGE';
 
 export function updateUnAuthPage(page) {
 	return {

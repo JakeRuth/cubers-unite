@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import SignUpPage from './pre-auth/SignUpPage';
 import ConfirmSignUpPage from './pre-auth/ConfirmSignUpPage';
+import LoginPage from './pre-auth/LoginPage';
 
 import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 
@@ -21,13 +22,13 @@ class AppBodyComponent extends React.Component {
           content = <ConfirmSignUpPage/>;
           break;
         case UN_AUTH_PAGE.LOGIN:
-          content = 'Time to make the login form :)';
+          content = <LoginPage/>;
           break;
         default:
           content = 'Error'; // TODO: Do something better than this
       }
     }
-
+    
     return (
       <div className="app-body-container">
         {content}

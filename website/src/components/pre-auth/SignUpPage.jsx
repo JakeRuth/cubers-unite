@@ -30,8 +30,12 @@ class SignUpPageComponent extends React.Component {
     this.props.signUp(this.props.username, this.props.email, this.props.password);
   };
 
-  skipToConfirmationForm = () => {
+  goToConfirmationPage = () => {
     this.props.updateUnAuthPage(UN_AUTH_PAGE.CONFIRM_SIGN_UP);
+  };
+
+  goToLoginPage = () => {
+    this.props.updateUnAuthPage(UN_AUTH_PAGE.LOGIN);
   };
 
   renderSpinner() {
@@ -83,8 +87,17 @@ class SignUpPageComponent extends React.Component {
         <p className="sign-up-page-skip-message">
           Already have a verification code?
           <span
-            className="sign-up-page-token-form-link"
-            onClick={this.skipToConfirmationForm}
+            className="sign-up-page-skip-link"
+            onClick={this.goToConfirmationPage}
+          >
+            {' Click here.'}
+          </span>
+        </p>
+        <p className="sign-up-page-skip-message">
+          Already have an account?
+          <span
+            className="sign-up-page-skip-link"
+            onClick={this.goToLoginPage}
           >
             {' Click here.'}
           </span>
@@ -112,10 +125,10 @@ class SignUpPageComponent extends React.Component {
 
 SignUpPageComponent.propTypes = {
   username: PropTypes.string.isRequired,
-  updateEmail: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
-  updateUsername: PropTypes.func.isRequired,
   password: PropTypes.string.isRequired,
+  updateUsername: PropTypes.func.isRequired,
+  updateEmail: PropTypes.func.isRequired,
   updatePassword: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   signUpRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,

@@ -87,9 +87,8 @@ class ConfirmSignUpPageComponent extends React.Component {
             className="confirm-sign-up-page-token-form-link"
             onClick={this.goToSignUpForm}
           >
-            {' Click here '}
+            {' Click here.'}
           </span>
-          to sign up.
         </p>
       </div>
     );
@@ -98,13 +97,10 @@ class ConfirmSignUpPageComponent extends React.Component {
   render() {
     let content;
 
-    switch(this.props.confirmSignUpRequestStatus) {
-      case ASYNC_STATUS.IN_FLIGHT:
-        content = this.renderSpinner();
-        break;
-      default:
-        content = this.renderForm();
-        break;
+    if (this.props.confirmSignUpRequestStatus === ASYNC_STATUS.IN_FLIGHT) {
+      content = this.renderSpinner();
+    } else {
+      content = this.renderForm();
     }
 
     return (

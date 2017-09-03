@@ -1,30 +1,30 @@
-.sign-up-page-container {
+.login-page-container {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   width: 216px;
 }
 
-.sign-up-form-label {
+.login-form-label {
   text-align: center;
   margin-bottom: 10px;
   font-size: 17px;
   color: #FC4A1A;
 }
 
-.sign-up-page-spinner-container {
+.login-page-spinner-container {
   position: relative;
   top: 30px;
   right: 30px;
 }
 
-.sign-up-page-skip-message {
+.login-page-go-to-sign-up-message {
   text-align: center;
   font-size: 17px;
   color: #FC4A1A;
   margin: 5px;
 }
 
-.sign-up-page-skip-link {
+.login-page-sign-up-page-link {
   cursor: pointer;
 }
