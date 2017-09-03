@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import SignUpPage from './sign-up/SignUpPage';
-import ConfirmSignUpPage from './sign-up/ConfirmSignUpPage';
+import SignUpPage from './pre-auth/SignUpPage';
+import ConfirmSignUpPage from './pre-auth/ConfirmSignUpPage';
 
 import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 
