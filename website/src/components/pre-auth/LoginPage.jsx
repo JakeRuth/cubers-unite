@@ -13,7 +13,7 @@ import {updateUnAuthPage} from '../../actions/AppBodyActions';
 
 import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
-import './Login.css';
+import './LoginPage.css';
 
 class LoginPageComponent extends React.Component {
   onAuthenticateSubmit = () => {
