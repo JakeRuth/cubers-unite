@@ -1,4 +1,5 @@
 import {
+  AuthenticationDetails,
   CognitoUser,
   CognitoUserPool,
   CognitoUserAttribute,
@@ -35,7 +36,7 @@ export function confirmSignUpAwsCognitoUser(verificationCode, username, successC
   const cognitoUser = new CognitoUser({
     Username: username,
     Pool: new CognitoUserPool(poolData),
-  })
+  });
 
   cognitoUser.confirmRegistration(verificationCode, false, function(err, result) {
     if (err) {
@@ -44,5 +45,20 @@ export function confirmSignUpAwsCognitoUser(verificationCode, username, successC
     } else {
       successCallback();
     }
+  });
+}
+
+export function authenticateAwsCognitoUser(username, password, successCallback, failureCallBack) {
+  const authenticationDetails = new AuthenticationDetails({
+    Username : username,
+    Password : password,
+  });
+  const cognitoUser = new CognitoUser({
+    Username: username,
+    Pool: new CognitoUserPool(poolData),
+  });
+  cognitoUser.authenticateUser(authenticationDetails, {
+    onSuccess: successCallback,
+    onFailure: failureCallBack,
   });
 }
