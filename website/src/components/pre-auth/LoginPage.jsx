@@ -11,6 +11,7 @@ import {
 } from '../../actions/LoginActions';
 import {updateUnAuthPage} from '../../actions/AppBodyActions';
 
+import {ASYNC_STATUS} from '../../constants/AsyncStatus';
 import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
 import './LoginPage.css';
@@ -78,8 +79,11 @@ class LoginPageComponent extends React.Component {
   render() {
     let content;
 
-    // TODO: Add spinner when authenticate request is implemented
-    content = this.renderContent();
+    if (this.props.loginRequestStatus === ASYNC_STATUS.IN_FLIGHT) {
+      content = this.renderSpinner();
+    } else {
+      content = this.renderContent();
+    }
 
     return (
       <div>
@@ -95,6 +99,7 @@ LoginPageComponent.propTypes = {
   password: PropTypes.string.isRequired,
   updatePassword: PropTypes.func.isRequired,
   authenticate: PropTypes.func.isRequired,
+  loginRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
 const mapStateToProps = (state) => {

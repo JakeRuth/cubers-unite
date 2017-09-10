@@ -28,7 +28,7 @@ class AppBodyComponent extends React.Component {
           content = 'Error'; // TODO: Do something better than this
       }
     }
-    
+
     return (
       <div className="app-body-container">
         {content}
