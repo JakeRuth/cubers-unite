@@ -1,6 +1,8 @@
 import {authenticateAwsCognitoUser} from '../aws/aws-cognito-helper';
+import {localStoragePut} from '../localStorageWrapper';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
+import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 
 export const UPDATE_USERNAME = 'login/UPDATE_USERNAME';
 export const UPDATE_PASSWORD = 'login/UPDATE_PASSWORD';
@@ -31,9 +33,7 @@ export function authenticate(username, password) {
 			username,
 			password,
 			(response) => {
-				console.log(response);
-			    console.log('access token + ' + response.getAccessToken().getJwtToken());
-			    console.log('idToken + ' + response.idToken.jwtToken);
+				localStoragePut(LOCAL_STORAGE_KEYS.USER_ID, response.idToken.jwtToken);
 				dispatch({
 					type: LOGIN_REQUEST_UPDATE,
 					status: ASYNC_STATUS.SUCCESS,
