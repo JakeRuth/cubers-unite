@@ -27,6 +27,8 @@ class AppBodyComponent extends React.Component {
         default:
           content = 'Error'; // TODO: Do something better than this
       }
+    } else {
+      content = 'Woo you are logged in, be excited!';
     }
 
     return (
@@ -39,7 +41,7 @@ class AppBodyComponent extends React.Component {
 
 AppBodyComponent.propTypes = {
   currentUnAuthPage: PropTypes.oneOf(Object.values(UN_AUTH_PAGE)).isRequired,
-  isUserAuthenitcated: PropTypes.bool.isRequired,
+  isUserAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
