@@ -60,9 +60,9 @@ class ConfirmSignUpPageComponent extends React.Component {
 
     return (
       <div>
-        <div className="confirm-sign-up-form-label">
+        <p className="confirm-sign-up-form-label">
           {formMessage}
-        </div>
+        </p>
         <form className="confirm-sign-up-form pure-form pure-form-aligned">
           {usernameInputComponent}
           <div className="pure-control-group">

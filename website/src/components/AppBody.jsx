@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import SignUpPage from './pre-auth/SignUpPage';
 import ConfirmSignUpPage from './pre-auth/ConfirmSignUpPage';
 import LoginPage from './pre-auth/LoginPage';
+import HomePage from './auth/HomePage';
 
 import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 
@@ -28,7 +29,7 @@ class AppBodyComponent extends React.Component {
           content = 'Error'; // TODO: Do something better than this
       }
     } else {
-      content = 'Woo you are logged in, be excited!';
+      content = <HomePage/>;
     }
 
     return (
