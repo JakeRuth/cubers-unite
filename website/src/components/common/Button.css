@@ -1,3 +1,16 @@
+// copied from https://purecss.io/buttons/ (renamed classnames)
+.button-small {
+	font-size: 70%;
+}
+
+.button-medium {
+  font-size: 85%;
+}
+
+.button-large {
+  font-size: 110%;
+}
+
 .button-xlarge {
   font-size: 125%;
 }

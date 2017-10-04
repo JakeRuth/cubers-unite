@@ -7,6 +7,8 @@ import Modal from '../common/Modal';
 
 import {toggleCreateRoomModal} from '../../actions/HomePageActions';
 
+import {ButtonSize} from '../../constants/ButtonSize';
+
 import './HomePage.css';
 
 class HomePageComponent extends React.Component {
@@ -22,6 +24,7 @@ class HomePageComponent extends React.Component {
         <Button
         	label='Create Room'
         	onClick={this.props.toggleCreateRoomModal}
+          size={ButtonSize.XLARGE}
       	/>
       </div>
     );
