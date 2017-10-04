@@ -1,0 +1,34 @@
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 99999;
+  transition: opacity .3s ease-in;
+  pointer-events: auto;
+  overflow-y: auto;
+}
+
+.container {
+  width: 400px;
+  min-height: 200px;
+  position: relative;
+  margin: 100px auto;
+  padding: 5px 20px 13px 20px;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.closeTrigger {
+  margin: 0;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-weight: 100;
+  font-size: 25px;
+  cursor: pointer;
+}
