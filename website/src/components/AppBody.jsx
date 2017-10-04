@@ -31,7 +31,6 @@ class AppBodyComponent extends React.Component {
     } else {
       content = <HomePage/>;
     }
-    content = <HomePage/>;
 
     return (
       <div className="app-body-container">

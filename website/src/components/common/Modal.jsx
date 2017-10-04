@@ -60,14 +60,14 @@ export default class Modal extends React.Component {
 
     return (
       <div
-        className="modal"
+        className="modal-container"
         onClick={this.hideOnOuterClick}
         data-modal="true"
         style={this.state}
       >
-        <div className="container">
+        <div className="modal-content">
           <p
-            className="closeTrigger"
+            className="modal-close-trigger"
             onClick={this.props.onClose}
           >
             x
