@@ -44,6 +44,7 @@ Form.propTypes = {
   fields: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequried,
+      type: PropTypes.string,
       placeholder: PropTypes.string.isRequired,
       value: PropTypes.string,
       onChange: PropTypes.func.isRequired,  

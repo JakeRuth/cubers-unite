@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
+import Form from '../common/Form';
 
 import {
   updateUsername,
@@ -47,33 +48,25 @@ class LoginPageComponent extends React.Component {
   renderContent() {
     return (
       <div>
-        <p className="login-form-label">Login ^_^</p>
-        <form className="login-page-container pure-form pure-form-aligned">
-            <div className="pure-control-group">
-                <input
-                  id="name"
-                  placeholder="Username"
-                  value={this.props.username}
-                  onChange={this.props.updateUsername}
-                />
-            </div>
-            <div className="pure-control-group">
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  value={this.props.password}
-                  onChange={this.props.updatePassword}
-                />
-            </div>
-            <button
-              onClick={this.onAuthenticateSubmit}
-              className="pure-button pure-button-primary"
-              type="button"
-            >
-              Submit
-            </button>
-        </form>
+        <Form
+          label="Login ^_^"
+          onSubmit={this.onAuthenticateSubmit}
+          fields={[
+            {
+              id: "username",
+              placeholder: "Username",
+              value: this.props.username,
+              onChange: this.props.updateUsername,
+            },
+            {
+              id: "password",
+              type: "password",
+              placeholder: "Password",
+              value: this.props.password,
+              onChange: this.props.updatePassword,
+            },
+          ]}
+        />
         <p className="login-page-go-to-sign-up-message">
           Don't have an account?
           <span
