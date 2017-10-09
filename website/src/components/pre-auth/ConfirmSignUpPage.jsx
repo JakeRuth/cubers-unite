@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
+import Form from '../common/Form';
 
 import {updateUsername, updateVerificationCode, confirmSignUp} from '../../actions/ConfirmSignUpActions.js';
 import {updateUnAuthPage} from '../../actions/AppBodyActions';
@@ -22,7 +23,7 @@ class ConfirmSignUpPageComponent extends React.Component {
   }
 
   onConfirmSignUpSubmit = () => {
-    let username = this.props.username ? this.props.username : this.props.usernameFromSignUp;
+    let username = this.props.username ? this.props.username : this.props.signUpUsername;
     this.props.confirmSignUp(this.props.verificationCode, username);
   };
 
@@ -39,48 +40,36 @@ class ConfirmSignUpPageComponent extends React.Component {
   }
 
   renderForm() {
-    let formMessage, usernameInputComponent;
+    let formMessage;
+    let fields = [
+      {
+        id: "verificationCode",
+        placeholder: "Verification Code #",
+        value: this.props.verificationCode,
+        onChange: this.props.updateVerificationCode,
+      },
+    ];
 
     // username and email aren't required since it's possible to skip the sign up page
-    if (this.props.email && this.props.usernameFromSignUp) {
-      formMessage = `An email with a verification code has been sent to ${this.props.email} for ${this.props.usernameFromSignUp}.`;
+    if (this.props.signUpEmail && this.props.signUpUsername) {
+      formMessage = `An email with a verification code has been sent to ${this.props.signUpEmail} for ${this.props.signUpUsername}.`;
     } else {
       formMessage = 'Please enter the username you sign up with, as well as the verification code sent to your email.';
-      usernameInputComponent = (
-        <div className="pure-control-group">
-          <input
-            id="username"
-            placeholder="Username"
-            value={this.props.username}
-            onChange={this.props.updateUsername}
-          />
-        </div>
-      );
+      fields.unshift({
+        id: "username",
+        placeholder: "Username",
+        value: this.props.username,
+        onChange: this.props.updateUsername,
+      });
     }
 
     return (
       <div>
-        <p className="confirm-sign-up-form-label">
-          {formMessage}
-        </p>
-        <form className="confirm-sign-up-form pure-form pure-form-aligned">
-          {usernameInputComponent}
-          <div className="pure-control-group">
-            <input
-              id="verificationCode"
-              placeholder="Verification Code #"
-              value={this.props.verificationCode}
-              onChange={this.props.updateVerificationCode}
-            />
-          </div>
-          <button
-            onClick={this.onConfirmSignUpSubmit}
-            className="pure-button pure-button-primary"
-            type="button"
-          >
-            Submit
-          </button>
-        </form>
+        <Form
+          label={formMessage}
+          onSubmit={this.onConfirmSignUpSubmit}
+          fields={fields}
+        />
         <p className="confirm-sign-up-page-skip-message">
           No verification code?
           <span
@@ -112,8 +101,8 @@ class ConfirmSignUpPageComponent extends React.Component {
 }
 
 ConfirmSignUpPageComponent.propTypes = {
-  usernameFromSignUp: PropTypes.string,
-  email: PropTypes.string,
+  signUpUsername: PropTypes.string,
+  signUpEmail: PropTypes.string,
   username: PropTypes.string,
   updateUsername: PropTypes.func.isRequired,
   verificationCode: PropTypes.string,
@@ -125,8 +114,8 @@ ConfirmSignUpPageComponent.propTypes = {
 const mapStateToProps = (state) => {
   return {
     ...state.confirmSignUp,
-    usernameFromSignUp: state.signUp.username,
-    email: state.signUp.email,
+    signUpUsername: state.signUp.username,
+    signUpEmail: state.signUp.email,
   };
 };
 
