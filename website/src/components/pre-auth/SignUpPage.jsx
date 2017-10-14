@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Spinner from '../common/Spinner';
+import Form from '../common/Form';
 
 import {
   updateEmail,
@@ -49,41 +50,31 @@ class SignUpPageComponent extends React.Component {
   renderContent() {
     return (
       <div>
-        <p className="sign-up-form-label">Sign up to start cubing</p>
-        <form className="sign-up-page-container pure-form pure-form-aligned">
-            <div className="pure-control-group">
-                <input
-                  id="email"
-                  placeholder="Email Address"
-                  value={this.props.email}
-                  onChange={this.props.updateEmail}
-                />
-            </div>
-            <div className="pure-control-group">
-                <input
-                  id="name"
-                  placeholder="Username"
-                  value={this.props.username}
-                  onChange={this.props.updateUsername}
-                />
-            </div>
-            <div className="pure-control-group">
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  value={this.props.password}
-                  onChange={this.props.updatePassword}
-                />
-            </div>
-            <button
-              onClick={this.onSignUpSubmit}
-              className="pure-button pure-button-primary"
-              type="button"
-            >
-              Submit
-            </button>
-        </form>
+        <Form
+          label="Sign up to start cubing"
+          onSubmit={this.onSignUpSubmit}
+          fields={[
+            {
+              id: "email",
+              placeholder: "Email Address",
+              value: this.props.email,
+              onChange: this.props.updateEmail,
+            },
+            {
+              id: "username",
+              placeholder: "Username",
+              value: this.props.username,
+              onChange: this.props.updateUsername,
+            },
+            {
+              id: "password",
+              type: "password",
+              placeholder: "Password",
+              value: this.props.password,
+              onChange: this.props.updatePassword,
+            },
+          ]}
+        />
         <p className="sign-up-page-skip-message">
           Already have a verification code?
           <span
