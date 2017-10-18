@@ -12,7 +12,6 @@ import {
 } from '../../actions/LoginActions';
 import {
   updateUnAuthPage,
-  setIsUserAuthenticated,
 } from '../../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../../constants/AsyncStatus';
@@ -21,14 +20,6 @@ import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 import './LoginPage.css';
 
 class LoginPageComponent extends React.Component {
-  componentWillReceiveProps = (nextProps) => {
-    // On successful sign up, go to the confirm sign up page
-    if (this.props.loginRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
-        nextProps.loginRequestStatus === ASYNC_STATUS.SUCCESS) {
-      this.props.setIsUserAuthenticated(true);
-    }
-  }
-
   onAuthenticateSubmit = () => {
     this.props.authenticate(this.props.username, this.props.password);
   };
@@ -104,7 +95,6 @@ LoginPageComponent.propTypes = {
   updatePassword: PropTypes.func.isRequired,
   authenticate: PropTypes.func.isRequired,
   loginRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
-  setIsUserAuthenticated: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -119,7 +109,6 @@ const mapDispatchToProps = (dispatch) => {
       updatePassword: (event) => dispatch(updatePassword(event)),
       authenticate: (username, password) => dispatch(authenticate(username, password)),
       updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
-      setIsUserAuthenticated: (value) => dispatch(setIsUserAuthenticated(value)),
   };
 };
 

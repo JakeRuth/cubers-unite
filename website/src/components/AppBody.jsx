@@ -14,7 +14,7 @@ import './AppBody.css';
 class AppBodyComponent extends React.Component {
   render() {
     let content;
-    if (!this.props.isUserAuthenticated) {
+    if (!this.props.userIdToken) {
       switch(this.props.currentUnAuthPage) {
         case UN_AUTH_PAGE.SIGN_UP:
           content = <SignUpPage/>;
@@ -42,12 +42,13 @@ class AppBodyComponent extends React.Component {
 
 AppBodyComponent.propTypes = {
   currentUnAuthPage: PropTypes.oneOf(Object.values(UN_AUTH_PAGE)).isRequired,
-  isUserAuthenticated: PropTypes.bool.isRequired,
+  userIdToken: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     ...state.appBody,
+    userIdToken: state.login.userIdToken,
   };
 };
 

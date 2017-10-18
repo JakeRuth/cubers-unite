@@ -1,9 +1,21 @@
 .app-header-container {
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 
-.title {
-  color: #FC4A1A;;
+.app-header-title {
+  flex: 1;
+  color: #FC4A1A;
   font-size: 50px;
   margin: 20px;
+}
+
+.app-header-logout {
+  position: absolute;
+  left: 25px;
+  color: #FC4A1A;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 15px;
 }
