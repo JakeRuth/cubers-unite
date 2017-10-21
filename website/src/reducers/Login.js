@@ -2,6 +2,7 @@ import {
 	UPDATE_USERNAME,
 	UPDATE_PASSWORD,
 	LOGIN_REQUEST_UPDATE,
+	CHECK_USER_LOGIN_STATUS,
 	LOGOUT,
 } from '../actions/LoginActions.js';
 
@@ -33,6 +34,11 @@ function loginReducer(state = initialState, action) {
 				userIdToken: isSuccessful ? action.userIdToken : state.userIdToken,
 				password: isSuccessful ? '' : state.password,
 				loginRequestStatus: action.status,
+			};
+		case CHECK_USER_LOGIN_STATUS:
+			return {
+				...state,
+				userIdToken: action.userIdToken,
 			};
 		case LOGOUT:
 			return {

@@ -1,5 +1,9 @@
 import {authenticateAwsCognitoUser} from '../aws/aws-cognito-helper';
-import {localStoragePut, localStorageClear} from '../localStorageWrapper';
+import {
+	localStoragePut,
+	localStorageClear,
+	localStorageGet,
+} from '../localStorageWrapper';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
@@ -7,6 +11,7 @@ import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 export const UPDATE_USERNAME = 'login/UPDATE_USERNAME';
 export const UPDATE_PASSWORD = 'login/UPDATE_PASSWORD';
 export const LOGIN_REQUEST_UPDATE = 'login/LOGIN_REQUEST_UPDATE';
+export const CHECK_USER_LOGIN_STATUS = 'login/CHECK_USER_LOGIN_STATUS';
 export const LOGOUT = 'login/LOGOUT';
 
 export function updateUsername(event) {
@@ -28,6 +33,13 @@ export function logout() {
 	return {
 		type: LOGOUT,
 	};
+}
+
+export function checkUserLoginStatus() {
+	return {
+		type: CHECK_USER_LOGIN_STATUS,
+		userIdToken: localStorageGet(LOCAL_STORAGE_KEYS.USER_ID),
+	}
 }
 
 export function authenticate(username, password) {

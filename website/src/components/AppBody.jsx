@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import {checkUserLoginStatus} from '../actions/LoginActions';
+
 import SignUpPage from './pre-auth/SignUpPage';
 import ConfirmSignUpPage from './pre-auth/ConfirmSignUpPage';
 import LoginPage from './pre-auth/LoginPage';
@@ -12,6 +14,11 @@ import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 import './AppBody.css';
 
 class AppBodyComponent extends React.Component {
+	componentDidMount() {
+		// 'remember me' feature, goes to homepage if user is already logged in
+		this.props.checkUserLoginStatus();
+	}
+
   render() {
     let content;
     if (!this.props.userIdToken) {
@@ -43,6 +50,7 @@ class AppBodyComponent extends React.Component {
 AppBodyComponent.propTypes = {
   currentUnAuthPage: PropTypes.oneOf(Object.values(UN_AUTH_PAGE)).isRequired,
   userIdToken: PropTypes.string.isRequired,
+  checkUserLoginStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -52,5 +60,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const AppBody = connect(mapStateToProps)(AppBodyComponent);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    checkUserLoginStatus: () => dispatch(checkUserLoginStatus()),
+  };
+};
+
+const AppBody = connect(mapStateToProps, mapDispatchToProps)(AppBodyComponent);
 export default AppBody;
