@@ -49,7 +49,7 @@ class AppBodyComponent extends React.Component {
 
 AppBodyComponent.propTypes = {
   currentUnAuthPage: PropTypes.oneOf(Object.values(UN_AUTH_PAGE)).isRequired,
-  userIdToken: PropTypes.string.isRequired,
+  userIdToken: PropTypes.string,
   checkUserLoginStatus: PropTypes.func.isRequired,
 };
 
