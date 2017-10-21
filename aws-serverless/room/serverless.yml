@@ -1,0 +1,36 @@
+service: room
+
+provider:
+  name: aws
+  runtime: python3.6
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:table/Room"
+
+functions:
+  postConfirmation:
+    handler: createRoom.handler
+    events:
+      - http:
+          path: room/create
+          method: post
+          authorizer:
+            arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_E8iB6kNHp
+
+resources:
+  Resources:
+    userTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Room
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
