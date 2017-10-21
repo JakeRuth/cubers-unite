@@ -29,7 +29,7 @@ export default class Form extends React.Component {
           <button
             onClick={this.props.onSubmit}
             className="pure-button pure-button-primary"
-            type="button"
+            type="submit"
           >
             Submit
           </button>
@@ -47,7 +47,7 @@ Form.propTypes = {
       type: PropTypes.string,
       placeholder: PropTypes.string.isRequired,
       value: PropTypes.string,
-      onChange: PropTypes.func.isRequired,  
+      onChange: PropTypes.func.isRequired,
     })
   ).isRequired,
   label: PropTypes.string,
