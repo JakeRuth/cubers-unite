@@ -4,7 +4,7 @@ import {
 import {UN_AUTH_PAGE} from '../constants/UnAuthPage';
 
 const initialState = {
-  currentUnAuthPage: UN_AUTH_PAGE.SIGN_UP,
+  currentUnAuthPage: UN_AUTH_PAGE.LOGIN,
 };
 
 function appBodyReducer(state = initialState, action) {
