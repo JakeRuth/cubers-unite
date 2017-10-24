@@ -4,8 +4,12 @@ import {connect} from 'react-redux';
 
 import Button from '../common/Button';
 import Modal from '../common/Modal';
+import Form from '../common/Form';
 
 import {toggleCreateRoomModal} from '../../actions/HomePageActions';
+import {
+  updateName,
+} from '../../actions/CreateRoomFormActions';
 
 import {ButtonSize} from '../../constants/ButtonSize';
 
@@ -19,7 +23,23 @@ class HomePageComponent extends React.Component {
       		show={this.props.showCreateRoomModal}
       		onClose={this.props.toggleCreateRoomModal}
       	>
-      		<div>hey</div>
+        <div>
+          <Form
+            label="Create Room"
+            onSubmit={() => {}}
+            fields={[
+              {
+                id: "name",
+                placeholder: "Name",
+                value: this.props.name,
+                onChange: this.props.updateName,
+              },
+            ]}
+          />
+        <p>Only supporting 3x3 room types currently, Cubers Unite is still in beta and not production ready.</p>
+        <p>You can join the cause! Check out the code and contribute/learn{' '}
+          <a href="https://github.com/JakeRuth/cubers-unite" target="_blank">click here</a>.</p>
+        </div>
       	</Modal>
         <Button
         	label='Create Room'
@@ -32,12 +52,15 @@ class HomePageComponent extends React.Component {
 }
 
 HomePageComponent.propTypes = {
+  name: PropTypes.string.isRequired,
 	showCreateRoomModal: PropTypes.bool.isRequired,
 	toggleCreateRoomModal: PropTypes.func.isRequired,
+  updateName: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
+    name: state.createRoomForm.name,
     ...state.homePage,
   };
 };
@@ -45,6 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       toggleCreateRoomModal: () => dispatch(toggleCreateRoomModal()),
+      updateName: (event) => dispatch(updateName(event)),
   };
 };
 
