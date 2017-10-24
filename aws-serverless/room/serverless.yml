@@ -16,6 +16,7 @@ functions:
       - http:
           path: room/create
           method: post
+          cors: true
           authorizer:
             arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_E8iB6kNHp
 
