@@ -10,15 +10,21 @@ provider:
       Resource: "arn:aws:dynamodb:us-east-1:*:table/Room"
 
 functions:
-  postConfirmation:
+  createRoom:
     handler: createRoom.handler
     events:
       - http:
           path: room/create
           method: post
-          cors: true
           authorizer:
             arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_E8iB6kNHp
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
 
 resources:
   Resources:
