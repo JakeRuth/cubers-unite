@@ -8,8 +8,6 @@ def handler(event, context):
             "Access-Control-Allow-Credentials" : True,
         },
         "body": json.dumps({
-            "message": "woop woop",
             "input": event,
-            'suck': 'my nuts',
         }),
     }

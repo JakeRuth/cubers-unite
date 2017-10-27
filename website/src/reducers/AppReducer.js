@@ -2,9 +2,8 @@ import {combineReducers} from 'redux';
 
 import appBodyReducer from './AppBodyReducer';
 import confirmSignUpReducer from './ConfirmSignUp';
-import createRoomForm from './CreateRoomForm';
 import homePageReducer from './HomePage';
-import loginReducer from './Login'
+import loginReducer from './Login';
 import signUpReducer from './SignUp';
 
 const AppReducer = combineReducers({
@@ -13,7 +12,6 @@ const AppReducer = combineReducers({
 	homePage: homePageReducer,
 	signUp: signUpReducer,
 	login: loginReducer,
-	createRoomForm: createRoomForm,
 });
 
 export default AppReducer;

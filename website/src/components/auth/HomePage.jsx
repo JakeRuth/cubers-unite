@@ -6,16 +6,22 @@ import Button from '../common/Button';
 import Modal from '../common/Modal';
 import Form from '../common/Form';
 
-import {toggleCreateRoomModal} from '../../actions/HomePageActions';
 import {
+  toggleCreateRoomModal,
   updateName,
-} from '../../actions/CreateRoomFormActions';
+  createRoom,
+} from '../../actions/HomePageActions';
 
 import {ButtonSize} from '../../constants/ButtonSize';
 
 import './HomePage.css';
 
 class HomePageComponent extends React.Component {
+  submitCreateRoomForm = (event) => {
+    event.preventDefault();
+    this.props.createRoom(this.props.name);
+  };
+
   render() {
     return (
       <div className='home-page-container'>
@@ -23,23 +29,30 @@ class HomePageComponent extends React.Component {
       		show={this.props.showCreateRoomModal}
       		onClose={this.props.toggleCreateRoomModal}
       	>
-        <div>
-          <Form
-            label="Create Room"
-            onSubmit={() => {}}
-            fields={[
-              {
-                id: "name",
-                placeholder: "Name",
-                value: this.props.name,
-                onChange: this.props.updateName,
-              },
-            ]}
-          />
-        <p>Only supporting 3x3 room types currently, Cubers Unite is still in beta and not production ready.</p>
-        <p>You can join the cause! Check out the code and contribute/learn{' '}
-          <a href="https://github.com/JakeRuth/cubers-unite" target="_blank">click here</a>.</p>
-        </div>
+          <div>
+            <Form
+              label="Create Room"
+              onSubmit={this.submitCreateRoomForm}
+              fields={[
+                {
+                  id: "name",
+                  placeholder: "Name",
+                  value: this.props.name,
+                  onChange: this.props.updateName,
+                },
+              ]}
+            />
+            <p>Only supporting 3x3 room types currently, Cubers Unite is still in beta and not production ready.</p>
+            <p>You can help create this website! Check out the code and contribute/learn{' '}
+              <a
+                href="https://github.com/JakeRuth/cubers-unite"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                click here
+              </a>.
+            </p>
+          </div>
       	</Modal>
         <Button
         	label='Create Room'
@@ -60,13 +73,13 @@ HomePageComponent.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.createRoomForm.name,
     ...state.homePage,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+      createRoom: (name) => dispatch(createRoom(name)),
       toggleCreateRoomModal: () => dispatch(toggleCreateRoomModal()),
       updateName: (event) => dispatch(updateName(event)),
   };
