@@ -1,6 +1,8 @@
 import {requestWrapper} from '../request';
+import {localStorageGet} from '../localStorageWrapper';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
+import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 
 export const TOGGLE_CREATE_ROOM_MODAL = 'homePage/TOGGLE_CREATE_ROOM_MODAL';
 export const UPDATE_NAME = 'homePage/UPDATE_NAME';
@@ -30,6 +32,7 @@ export function createRoom(name) {
       '/room/create',
       {
         name: name,
+				username: localStorageGet(LOCAL_STORAGE_KEYS.USERNAME),
       },
 			(err, res) => {
 				// TODO: dipatch results

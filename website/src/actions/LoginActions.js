@@ -49,6 +49,10 @@ export function authenticate(username, password) {
 			status: ASYNC_STATUS.IN_FLIGHT,
 		});
 
+		// put username in local storage, if the request was unsuccessful it doesn't matter
+		// since the next login will override this bad value
+		localStoragePut(LOCAL_STORAGE_KEYS.USERNAME, username);
+
 		authenticateAwsCognitoUser(
 			username,
 			password,
