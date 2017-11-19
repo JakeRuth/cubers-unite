@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import CreateRoomModal from './CreateRoomModal';
 import Button from '../common/Button';
-import Modal from '../common/Modal';
-import Form from '../common/Form';
 
 import {
   toggleCreateRoomModal,
@@ -13,52 +12,29 @@ import {
 } from '../../actions/HomePageActions';
 
 import {ButtonSize} from '../../constants/ButtonSize';
+import {ASYNC_STATUS} from '../../constants/AsyncStatus';
 
 import './HomePage.css';
 
 class HomePageComponent extends React.Component {
-  submitCreateRoomForm = (event) => {
-    event.preventDefault();
-    this.props.createRoom(this.props.name);
-  };
-
   render() {
     return (
       <div className='home-page-container'>
-      	<Modal
-      		show={this.props.showCreateRoomModal}
-      		onClose={this.props.toggleCreateRoomModal}
-      	>
-          <div>
-            <Form
-              label="Create Room"
-              onSubmit={this.submitCreateRoomForm}
-              fields={[
-                {
-                  id: "name",
-                  placeholder: "Name",
-                  value: this.props.name,
-                  onChange: this.props.updateName,
-                },
-              ]}
-            />
-            <p>Only supporting 3x3 room types currently, Cubers Unite is still in beta and not production ready.</p>
-            <p>You can help create this website! Check out the code and contribute/learn{' '}
-              <a
-                href="https://github.com/JakeRuth/cubers-unite"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                click here
-              </a>.
-            </p>
-          </div>
-      	</Modal>
         <Button
         	label='Create Room'
         	onClick={this.props.toggleCreateRoomModal}
           size={ButtonSize.XLARGE}
       	/>
+
+      {/* Modals */}
+    	<CreateRoomModal
+        createRoom={this.props.createRoom}
+    		showCreateRoomModal={this.props.showCreateRoomModal}
+    		toggleCreateRoomModal={this.props.toggleCreateRoomModal}
+        name={this.props.name}
+        updateName={this.props.updateName}
+        createRoomRequestStatus={this.props.createRoomRequestStatus}
+    	/>
       </div>
     );
   }
@@ -66,9 +42,11 @@ class HomePageComponent extends React.Component {
 
 HomePageComponent.propTypes = {
   name: PropTypes.string.isRequired,
+  createRoom: PropTypes.func.isRequired,
 	showCreateRoomModal: PropTypes.bool.isRequired,
 	toggleCreateRoomModal: PropTypes.func.isRequired,
   updateName: PropTypes.func.isRequired,
+  createRoomRequestStatus:  PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
 const mapStateToProps = (state) => {

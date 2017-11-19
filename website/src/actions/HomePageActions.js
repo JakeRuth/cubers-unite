@@ -35,7 +35,10 @@ export function createRoom(name) {
 				username: localStorageGet(LOCAL_STORAGE_KEYS.USERNAME),
       },
 			(err, res) => {
-				// TODO: dipatch results
+				dispatch({
+		      type: CREATE_ROOM_REQUEST_UPDATE,
+					status: err ? ASYNC_STATUS.FAILURE : ASYNC_STATUS.SUCCESS,
+		    });
 			}
     );
   };
