@@ -6,8 +6,14 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
         - dynamodb:PutItem
-      Resource: "arn:aws:dynamodb:us-east-1:*:table/Room"
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:table/Room*"
 
 functions:
   createRoom:
@@ -16,6 +22,21 @@ functions:
       - http:
           path: room/create
           method: post
+          authorizer:
+            arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_E8iB6kNHp
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
+  getRooms:
+    handler: getRooms.handler
+    events:
+      - http:
+          path: room/fetch
+          method: get
           authorizer:
             arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_E8iB6kNHp
           cors:
