@@ -9,7 +9,7 @@ export default class Button extends React.Component {
   render() {
     return (
       <button
-      	className={`pure-button pure-button-primary ${this.props.size}`}
+      	className={`pure-button pure-button-primary ${this.props.size} ${this.props.className}`}
       	onClick={this.props.onClick}
     	>
         {this.props.label}
@@ -19,6 +19,7 @@ export default class Button extends React.Component {
 }
 
 Button.propTypes = {
+  className: PropTypes.string,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOf(Object.values(ButtonSize)).isRequired,

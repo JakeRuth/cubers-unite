@@ -1,0 +1,34 @@
+.room-list-container {
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  margin-top: 25px;
+}
+
+.room-list-row-container {
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+}
+
+.room-list-row-header {
+	font-size: 20px;
+	font-weight: bold;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+.room-list-row {
+	display: flex;
+	text-align: center;
+}
+
+.room-list-cell {
+	flex: 1;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

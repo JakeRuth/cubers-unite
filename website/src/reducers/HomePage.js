@@ -2,6 +2,7 @@ import {
 	TOGGLE_CREATE_ROOM_MODAL,
 	UPDATE_NAME,
 	CREATE_ROOM_REQUEST_UPDATE,
+	FETCH_ROOMS_REQUEST_UPDATE,
 } from '../actions/HomePageActions.js';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
@@ -10,6 +11,8 @@ const initialState = {
 	name: '',
 	showCreateRoomModal: false,
 	createRoomRequestStatus: ASYNC_STATUS.READY,
+	rooms: [],
+	fetchRoomsRequestStatus: ASYNC_STATUS.READY,
 };
 
 function homePageReducer(state = initialState, action) {
@@ -31,6 +34,13 @@ function homePageReducer(state = initialState, action) {
 				...state,
 				createRoomRequestStatus: action.status,
 			};
+		case FETCH_ROOMS_REQUEST_UPDATE:
+			const isSuccessful = action.status === ASYNC_STATUS.SUCCESS;
+			return {
+				...state,
+				fetchRoomsRequestStatus: action.status,
+				rooms: isSuccessful ? action.response.body.rooms : state.rooms,
+			}
 		default:
 			return state;
 	}

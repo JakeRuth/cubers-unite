@@ -14,4 +14,11 @@ export const requestWrapper = {
       .set('Authorization', localStorageGet(LOCAL_STORAGE_KEYS.USER_ID))
       .end(callback);
   },
+  get: (url, data, callback) => {
+    request.get(baseApiUrl + url)
+      .send(data)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorageGet(LOCAL_STORAGE_KEYS.USER_ID))
+      .end(callback);
+  },
 };

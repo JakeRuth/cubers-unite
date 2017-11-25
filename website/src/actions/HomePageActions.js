@@ -7,6 +7,7 @@ import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 export const TOGGLE_CREATE_ROOM_MODAL = 'homePage/TOGGLE_CREATE_ROOM_MODAL';
 export const UPDATE_NAME = 'homePage/UPDATE_NAME';
 export const CREATE_ROOM_REQUEST_UPDATE = 'homePage/CREATE_ROOM_REQUEST_UPDATE';
+export const FETCH_ROOMS_REQUEST_UPDATE = 'homePage/FETCH_ROOMS_REQUEST_UPDATE';
 
 export function toggleCreateRoomModal() {
 	return {
@@ -38,6 +39,27 @@ export function createRoom(name) {
 				dispatch({
 		      type: CREATE_ROOM_REQUEST_UPDATE,
 					status: err ? ASYNC_STATUS.FAILURE : ASYNC_STATUS.SUCCESS,
+		    });
+			}
+    );
+  };
+}
+
+export function fetchRooms() {
+  return (dispatch) => {
+    dispatch({
+      type: FETCH_ROOMS_REQUEST_UPDATE,
+			status: ASYNC_STATUS.IN_FLIGHT,
+    });
+
+    requestWrapper.get(
+      '/room/fetch',
+      {},
+			(err, res) => {
+				dispatch({
+		      type: FETCH_ROOMS_REQUEST_UPDATE,
+					status: err ? ASYNC_STATUS.FAILURE : ASYNC_STATUS.SUCCESS,
+					response: res,
 		    });
 			}
     );
