@@ -16,6 +16,7 @@ export default class App extends React.Component {
 			<Provider store={createStore(AppReducer, applyMiddleware(thunk))}>
 				<div className="pure-g">
 					<AppHeader/>
+					<hr/>
 					<AppBody/>
 				</div>
 			</Provider>

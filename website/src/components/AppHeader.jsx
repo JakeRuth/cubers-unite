@@ -25,14 +25,13 @@ class AppHeaderComponent extends React.Component {
       <div className="app-header-container pure-u-1">
         {this.props.userIdToken && this.renderLogoutButton()}
         <h1 className="app-header-title">Cubers Unite</h1>
-        <hr/>
       </div>
     );
   }
 }
 
 AppHeaderComponent.propTypes = {
-  userIdToken: PropTypes.string.isRequired,
+  userIdToken: PropTypes.string,
   logout: PropTypes.func.isRequired,
 };
 
