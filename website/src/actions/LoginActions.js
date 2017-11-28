@@ -1,4 +1,7 @@
-import {authenticateAwsCognitoUser} from '../aws/aws-cognito-helper';
+import {
+	authenticateAwsCognitoUser,
+	refreshAwsCognitoUserSession,
+} from '../aws/aws-cognito-helper';
 import {
 	localStoragePut,
 	localStorageClear,
@@ -11,7 +14,7 @@ import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 export const UPDATE_USERNAME = 'login/UPDATE_USERNAME';
 export const UPDATE_PASSWORD = 'login/UPDATE_PASSWORD';
 export const LOGIN_REQUEST_UPDATE = 'login/LOGIN_REQUEST_UPDATE';
-export const CHECK_USER_LOGIN_STATUS = 'login/CHECK_USER_LOGIN_STATUS';
+export const ATTEMPT_REFRESH_USER_SESSION_UPDATE = 'login/ATTEMPT_REFRESH_USER_SESSION_UPDATE';
 export const LOGOUT = 'login/LOGOUT';
 
 export function updateUsername(event) {
@@ -35,10 +38,41 @@ export function logout() {
 	};
 }
 
-export function checkUserLoginStatus() {
-	return {
-		type: CHECK_USER_LOGIN_STATUS,
-		userIdToken: localStorageGet(LOCAL_STORAGE_KEYS.USER_ID),
+export function attemptRefreshUserSession() {
+	return (dispatch) => {
+		dispatch({
+			type: ATTEMPT_REFRESH_USER_SESSION_UPDATE,
+			status: ASYNC_STATUS.IN_FLIGHT,
+		});
+
+		const refreshToken = localStorageGet(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
+		const username = localStorageGet(LOCAL_STORAGE_KEYS.USERNAME);
+
+		// do not attempt to refresh the session if no cached token/username exists
+		if (!refreshToken || !username) {
+			dispatch({
+				type: ATTEMPT_REFRESH_USER_SESSION_UPDATE,
+				status: ASYNC_STATUS.FAILURE,
+			});
+			return;
+		}
+
+		refreshAwsCognitoUserSession(refreshToken, username, (err, userSession) => {
+			if (err) {
+				dispatch({
+					type: ATTEMPT_REFRESH_USER_SESSION_UPDATE,
+					status: ASYNC_STATUS.FAILURE,
+				});
+			} else {
+				localStoragePut(LOCAL_STORAGE_KEYS.USER_ID, userSession.idToken.jwtToken);
+				localStoragePut(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, userSession.refreshToken.token);
+				dispatch({
+					type: ATTEMPT_REFRESH_USER_SESSION_UPDATE,
+					userIdToken: userSession.idToken.jwtToken,
+					status: ASYNC_STATUS.SUCCESS,
+				});
+			}
+		})
 	}
 }
 
@@ -58,6 +92,7 @@ export function authenticate(username, password) {
 			password,
 			(response) => {
 				localStoragePut(LOCAL_STORAGE_KEYS.USER_ID, response.idToken.jwtToken);
+				localStoragePut(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, response.refreshToken.token);
 				dispatch({
 					type: LOGIN_REQUEST_UPDATE,
 					userIdToken: response.idToken.jwtToken,

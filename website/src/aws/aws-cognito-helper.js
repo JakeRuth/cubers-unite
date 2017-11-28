@@ -1,5 +1,6 @@
 import {
   AuthenticationDetails,
+  CognitoRefreshToken ,
   CognitoUser,
   CognitoUserPool,
   CognitoUserAttribute,
@@ -50,8 +51,8 @@ export function confirmSignUpAwsCognitoUser(verificationCode, username, successC
 
 export function authenticateAwsCognitoUser(username, password, successCallback, failureCallBack) {
   const authenticationDetails = new AuthenticationDetails({
-    Username : username,
-    Password : password,
+    Username: username,
+    Password: password,
   });
   const cognitoUser = new CognitoUser({
     Username: username,
@@ -61,4 +62,15 @@ export function authenticateAwsCognitoUser(username, password, successCallback, 
     onSuccess: successCallback,
     onFailure: failureCallBack,
   });
+}
+
+export function refreshAwsCognitoUserSession(refreshToken, username, callback) {
+  const cognitoRefreshToken = new CognitoRefreshToken ({
+    RefreshToken: refreshToken,
+  });
+  const cognitoUser = new CognitoUser({
+    Username: username,
+    Pool: new CognitoUserPool(poolData),
+  });
+  cognitoUser.refreshSession(cognitoRefreshToken, callback);
 }
