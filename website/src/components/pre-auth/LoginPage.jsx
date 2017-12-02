@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
 import Form from '../common/Form';
@@ -10,31 +11,22 @@ import {
   updatePassword,
   authenticate,
 } from '../../actions/LoginActions';
-import {
-  updateUnAuthPage,
-} from '../../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../../constants/AsyncStatus';
-import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
 import './LoginPage.css';
 
 class LoginPageComponent extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.loginRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
+        nextProps.loginRequestStatus === ASYNC_STATUS.SUCCESS) {
+      this.props.history.push('/home');
+    }
+  }
+
   onAuthenticateSubmit = () => {
     this.props.authenticate(this.props.username, this.props.password);
   };
-
-  goToSignUpPage = () => {
-    this.props.updateUnAuthPage(UN_AUTH_PAGE.SIGN_UP);
-  };
-
-  renderSpinner() {
-    return (
-      <div className="login-page-spinner-container">
-        <Spinner/>
-      </div>
-    );
-  }
 
   renderContent() {
     return (
@@ -60,11 +52,8 @@ class LoginPageComponent extends React.Component {
         />
         <p className="login-page-go-to-sign-up-message">
           Don't have an account?
-          <span
-            className="login-page-sign-up-page-link"
-            onClick={this.goToSignUpPage}
-          >
-            {' Click here.'}
+          <span className="login-page-sign-up-page-link">
+            <Link to="/sign-up">{' Click here.'}</Link>
           </span>
         </p>
       </div>
@@ -75,13 +64,13 @@ class LoginPageComponent extends React.Component {
     let content;
 
     if (this.props.loginRequestStatus === ASYNC_STATUS.IN_FLIGHT) {
-      content = this.renderSpinner();
+      content = <Spinner />;
     } else {
       content = this.renderContent();
     }
 
     return (
-      <div>
+      <div className="login-page-container">
         {content}
       </div>
     );
@@ -108,7 +97,6 @@ const mapDispatchToProps = (dispatch) => {
       updateUsername: (event) => dispatch(updateUsername(event)),
       updatePassword: (event) => dispatch(updatePassword(event)),
       authenticate: (username, password) => dispatch(authenticate(username, password)),
-      updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
   };
 };
 

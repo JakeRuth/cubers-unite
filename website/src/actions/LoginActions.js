@@ -15,7 +15,6 @@ export const UPDATE_USERNAME = 'login/UPDATE_USERNAME';
 export const UPDATE_PASSWORD = 'login/UPDATE_PASSWORD';
 export const LOGIN_REQUEST_UPDATE = 'login/LOGIN_REQUEST_UPDATE';
 export const ATTEMPT_REFRESH_USER_SESSION_UPDATE = 'login/ATTEMPT_REFRESH_USER_SESSION_UPDATE';
-export const LOGOUT = 'login/LOGOUT';
 
 export function updateUsername(event) {
 	return {
@@ -33,9 +32,9 @@ export function updatePassword(event) {
 
 export function logout() {
 	localStorageClear();
-	return {
-		type: LOGOUT,
-	};
+
+	const lastSlashIndex = window.location.href.lastIndexOf('/');
+	window.location.replace(window.location.href.substring(0, lastSlashIndex + 1) + 'login');
 }
 
 export function attemptRefreshUserSession() {
@@ -68,7 +67,6 @@ export function attemptRefreshUserSession() {
 				localStoragePut(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, userSession.refreshToken.token);
 				dispatch({
 					type: ATTEMPT_REFRESH_USER_SESSION_UPDATE,
-					userIdToken: userSession.idToken.jwtToken,
 					status: ASYNC_STATUS.SUCCESS,
 				});
 			}
@@ -95,7 +93,6 @@ export function authenticate(username, password) {
 				localStoragePut(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, response.refreshToken.token);
 				dispatch({
 					type: LOGIN_REQUEST_UPDATE,
-					userIdToken: response.idToken.jwtToken,
 					status: ASYNC_STATUS.SUCCESS,
 				});
 			},

@@ -6,42 +6,44 @@ import './Spinner.css';
 export default class Spinner extends React.Component {
   render() {
     return (
-      <div className='loader12'>
-      	<div className='spinner3'>
-      		<div className='container-B'>
-      			<div className='hex0'></div>
-      			<div className='hex120'></div>
-      			<div className='hex240'></div>
-      			<div className='spinner3'>
-      				<div className='container-B'>
-      					<div className='hex0'></div>
-      					<div className='hex120'></div>
-      					<div className='hex240'></div>
-      					<div className='spinner3'>
-      						<div className='container-B'>
-      							<div className='hex0'></div>
-      							<div className='hex120'></div>
-      							<div className='hex240'></div>
-      							<div className='spinner3'>
-      								<div className='container-B'>
-      									<div className='hex0'></div>
-      									<div className='hex120'></div>
-      									<div className='hex240'></div>
-      									<div className='spinner3'>
-      										<div className='container-B'>
-      											<div className='hex0'></div>
-      											<div className='hex120'></div>
-      											<div className='hex240'></div>
-      										</div>
-      									</div>
-      								</div>
-      							</div>
-      						</div>
-      					</div>
-      				</div>
-      			</div>
-      		</div>
-      	</div>
+      <div>
+        <div className='loader12'>
+        	<div className='spinner3'>
+        		<div className='container-B'>
+        			<div className='hex0'></div>
+        			<div className='hex120'></div>
+        			<div className='hex240'></div>
+        			<div className='spinner3'>
+        				<div className='container-B'>
+        					<div className='hex0'></div>
+        					<div className='hex120'></div>
+        					<div className='hex240'></div>
+        					<div className='spinner3'>
+        						<div className='container-B'>
+        							<div className='hex0'></div>
+        							<div className='hex120'></div>
+        							<div className='hex240'></div>
+        							<div className='spinner3'>
+        								<div className='container-B'>
+        									<div className='hex0'></div>
+        									<div className='hex120'></div>
+        									<div className='hex240'></div>
+        									<div className='spinner3'>
+        										<div className='container-B'>
+        											<div className='hex0'></div>
+        											<div className='hex120'></div>
+        											<div className='hex240'></div>
+        										</div>
+        									</div>
+        								</div>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
       </div>
     );
   }

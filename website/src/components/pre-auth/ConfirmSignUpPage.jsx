@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
 import Form from '../common/Form';
 
 import {updateUsername, updateVerificationCode, confirmSignUp} from '../../actions/ConfirmSignUpActions.js';
-import {updateUnAuthPage} from '../../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../../constants/AsyncStatus';
-import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
 import './ConfirmSignUpPage.css';
 
@@ -18,7 +17,7 @@ class ConfirmSignUpPageComponent extends React.Component {
     // On successful confirm sign up, go to the login page
     if (this.props.confirmSignUpRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
         nextProps.confirmSignUpRequestStatus === ASYNC_STATUS.SUCCESS) {
-      this.props.updateUnAuthPage(UN_AUTH_PAGE.LOGIN);
+      this.props.history.push('/login');
     }
   }
 
@@ -26,18 +25,6 @@ class ConfirmSignUpPageComponent extends React.Component {
     let username = this.props.username ? this.props.username : this.props.signUpUsername;
     this.props.confirmSignUp(this.props.verificationCode, username);
   };
-
-  goToSignUpForm = () => {
-    this.props.updateUnAuthPage(UN_AUTH_PAGE.SIGN_UP);
-  };
-
-  renderSpinner() {
-    return (
-      <div className="confirm-sign-up-page-spinner-container">
-        <Spinner/>
-      </div>
-    );
-  }
 
   renderForm() {
     let formMessage;
@@ -72,11 +59,8 @@ class ConfirmSignUpPageComponent extends React.Component {
         />
         <p className="confirm-sign-up-page-skip-message">
           No verification code?
-          <span
-            className="confirm-sign-up-page-token-form-link"
-            onClick={this.goToSignUpForm}
-          >
-            {' Click here.'}
+          <span className="confirm-sign-up-page-token-form-link">
+            <Link to="/sign-up">{' Click here.'}</Link>
           </span>
         </p>
       </div>
@@ -87,13 +71,13 @@ class ConfirmSignUpPageComponent extends React.Component {
     let content;
 
     if (this.props.confirmSignUpRequestStatus === ASYNC_STATUS.IN_FLIGHT) {
-      content = this.renderSpinner();
+      content = <Spinner />;
     } else {
       content = this.renderForm();
     }
 
     return (
-      <div>
+      <div className="confirm-sign-up-page-container">
         {content}
       </div>
     );
@@ -124,7 +108,6 @@ const mapDispatchToProps = (dispatch) => {
     updateUsername: (event) => dispatch(updateUsername(event)),
     updateVerificationCode: (event) => dispatch(updateVerificationCode(event)),
     confirmSignUp: (verificationCode, username) => dispatch(confirmSignUp(verificationCode, username)),
-    updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
   };
 };
 

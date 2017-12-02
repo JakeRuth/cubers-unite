@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import {localStorageGet} from '../localStorageWrapper';
+
 import {
   logout,
 } from '../actions/LoginActions';
 
-import './AppHeader.css';
+import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 
-class AppHeaderComponent extends React.Component {
+import './Header.css';
+
+class HeaderComponent extends React.Component {
   renderLogoutButton() {
     return (
       <div
@@ -30,14 +34,14 @@ class AppHeaderComponent extends React.Component {
   }
 }
 
-AppHeaderComponent.propTypes = {
+HeaderComponent.propTypes = {
   userIdToken: PropTypes.string,
   logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    userIdToken: state.login.userIdToken,
+    userIdToken: localStorageGet(LOCAL_STORAGE_KEYS.USER_ID),
   };
 };
 
@@ -47,5 +51,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const AppHeader = connect(mapStateToProps, mapDispatchToProps)(AppHeaderComponent);
-export default AppHeader;
+const Header = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
+export default Header;

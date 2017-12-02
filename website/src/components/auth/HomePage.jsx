@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import Page from'../Page';
 import CreateRoomModal from './CreateRoomModal';
 import RoomList from './RoomList';
 import Button from '../common/Button';
@@ -25,28 +26,30 @@ class HomePageComponent extends React.Component {
 
   render() {
     return (
-      <div className='home-page-container'>
-        <Button
-          className='home-page-create-room-button'
-        	label='Create Room'
-        	onClick={this.props.toggleCreateRoomModal}
-          size={ButtonSize.XLARGE}
-      	/>
-        <RoomList
-          fetchRoomsRequestStatus={this.props.fetchRoomsRequestStatus}
-          rooms={this.props.rooms}
-        />
+      <Page push={this.props.history.push}>
+        <div className='home-page-container'>
+          <Button
+            className='home-page-create-room-button'
+          	label='Create Room'
+          	onClick={this.props.toggleCreateRoomModal}
+            size={ButtonSize.XLARGE}
+        	/>
+          <RoomList
+            fetchRoomsRequestStatus={this.props.fetchRoomsRequestStatus}
+            rooms={this.props.rooms}
+          />
 
-        {/* Modals */}
-      	<CreateRoomModal
-          createRoom={this.props.createRoom}
-      		showCreateRoomModal={this.props.showCreateRoomModal}
-      		toggleCreateRoomModal={this.props.toggleCreateRoomModal}
-          name={this.props.name}
-          updateName={this.props.updateName}
-          createRoomRequestStatus={this.props.createRoomRequestStatus}
-      	/>
-      </div>
+          {/* Modals */}
+        	<CreateRoomModal
+            createRoom={this.props.createRoom}
+        		showCreateRoomModal={this.props.showCreateRoomModal}
+        		toggleCreateRoomModal={this.props.toggleCreateRoomModal}
+            name={this.props.name}
+            updateName={this.props.updateName}
+            createRoomRequestStatus={this.props.createRoomRequestStatus}
+        	/>
+        </div>
+      </Page>
     );
   }
 }

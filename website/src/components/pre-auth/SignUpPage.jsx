@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
 import Form from '../common/Form';
@@ -11,10 +12,8 @@ import {
   updatePassword,
   signUp,
 } from '../../actions/SignUpActions';
-import {updateUnAuthPage} from '../../actions/AppBodyActions';
 
 import {ASYNC_STATUS} from '../../constants/AsyncStatus';
-import {UN_AUTH_PAGE} from '../../constants/UnAuthPage';
 
 import './SignUpPage.css';
 
@@ -23,29 +22,13 @@ class SignUpPageComponent extends React.Component {
     // On successful sign up, go to the confirm sign up page
     if (this.props.signUpRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
         nextProps.signUpRequestStatus === ASYNC_STATUS.SUCCESS) {
-      this.props.updateUnAuthPage(UN_AUTH_PAGE.CONFIRM_SIGN_UP);
+      this.props.history.push('/confirm-sign-up');
     }
   }
 
   onSignUpSubmit = () => {
     this.props.signUp(this.props.username, this.props.email, this.props.password);
   };
-
-  goToConfirmationPage = () => {
-    this.props.updateUnAuthPage(UN_AUTH_PAGE.CONFIRM_SIGN_UP);
-  };
-
-  goToLoginPage = () => {
-    this.props.updateUnAuthPage(UN_AUTH_PAGE.LOGIN);
-  };
-
-  renderSpinner() {
-    return (
-      <div className="sign-up-page-spinner-container">
-        <Spinner/>
-      </div>
-    );
-  }
 
   renderContent() {
     return (
@@ -77,20 +60,14 @@ class SignUpPageComponent extends React.Component {
         />
         <p className="sign-up-page-skip-message">
           Already have a verification code?
-          <span
-            className="sign-up-page-skip-link"
-            onClick={this.goToConfirmationPage}
-          >
-            {' Click here.'}
+          <span className="sign-up-page-skip-link">
+            <Link to="/confirm-sign-up">{' Click here.'}</Link>
           </span>
         </p>
         <p className="sign-up-page-skip-message">
           Already have an account?
-          <span
-            className="sign-up-page-skip-link"
-            onClick={this.goToLoginPage}
-          >
-            {' Click here.'}
+          <span className="sign-up-page-skip-link">
+            <Link to="/login">{' Click here.'}</Link>
           </span>
         </p>
       </div>
@@ -101,13 +78,13 @@ class SignUpPageComponent extends React.Component {
     let content;
 
     if (this.props.signUpRequestStatus === ASYNC_STATUS.IN_FLIGHT) {
-      content = this.renderSpinner();
+      content = <Spinner />;
     } else {
       content = this.renderContent();
     }
 
     return (
-      <div>
+      <div className="sign-up-page-container">
         {content}
       </div>
     );
@@ -137,7 +114,6 @@ const mapDispatchToProps = (dispatch) => {
       updateUsername: (event) => dispatch(updateUsername(event)),
       updatePassword: (event) => dispatch(updatePassword(event)),
       signUp: (username, email, password) => dispatch(signUp(username, email, password)),
-      updateUnAuthPage: (page) => dispatch(updateUnAuthPage(page)),
   };
 };
 

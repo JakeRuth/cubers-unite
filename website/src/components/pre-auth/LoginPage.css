@@ -1,7 +1,8 @@
-.login-page-spinner-container {
-  position: relative;
-  top: 30px;
-  right: 30px;
+.login-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
 }
 
 .login-page-go-to-sign-up-message {

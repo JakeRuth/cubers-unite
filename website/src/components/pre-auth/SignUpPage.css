@@ -1,7 +1,8 @@
-.sign-up-page-spinner-container {
-  position: relative;
-  top: 30px;
-  right: 30px;
+.sign-up-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
 }
 
 .sign-up-page-skip-message {

@@ -1,24 +1,36 @@
 import React from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 
 import AppReducer from '../reducers/AppReducer';
 
-import AppHeader from'./AppHeader';
-import AppBody from'./AppBody';
+import Header from './Header';
+import SignUpPage from './pre-auth/SignUpPage';
+import ConfirmSignUpPage from './pre-auth/ConfirmSignUpPage';
+import LoginPage from './pre-auth/LoginPage';
+import HomePage from './auth/HomePage';
 
 import './App.css';
 
 export default class App extends React.Component {
 	render() {
+		const store = createStore(AppReducer, applyMiddleware(thunk));
+
 		return (
-			<Provider store={createStore(AppReducer, applyMiddleware(thunk))}>
-				<div className="pure-g">
-					<AppHeader/>
-					<hr/>
-					<AppBody/>
-				</div>
+			<Provider store={store}>
+				<BrowserRouter>
+					<div>
+						<Header />
+
+						<Route exact path="/" component={HomePage} />
+						<Route path="/home" component={HomePage} />
+						<Route path="/login" component={LoginPage} />
+						<Route path="/sign-up" component={SignUpPage} />
+						<Route path="/confirm-sign-up" component={ConfirmSignUpPage} />
+					</div>
+				</BrowserRouter>
 			</Provider>
 		);
 	}
