@@ -21,23 +21,6 @@ class CreateRoomModal extends React.Component {
     if (this.props.createRoomRequestStatus === ASYNC_STATUS.FAILURE) {
       // TODO: Do something better than this
       message = <p>Something went wrong! Close modal and try again.</p>;
-    } else if (this.props.createRoomRequestStatus === ASYNC_STATUS.SUCCESS) {
-      message = <p>Room created!  You can close this modal.</p>;
-    } else {
-      message = (
-        <div>
-          <p>Only supporting 3x3 room types currently, Cubers Unite is still in beta and not production ready.</p>
-          <p>You can help create this website! Check out the code and contribute/learn{' '}
-            <a
-              href="https://github.com/JakeRuth/cubers-unite"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              click here
-            </a>.
-          </p>
-        </div>
-      );
     }
 
     return (

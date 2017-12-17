@@ -13,6 +13,8 @@
 }
 
 .room-list-row-header {
+	display: flex;
+	text-align: center;
 	font-size: 20px;
 	font-weight: bold;
 	border-bottom-width: 2px;
@@ -24,6 +26,14 @@
 .room-list-row {
 	display: flex;
 	text-align: center;
+	padding: 5px 0;
+}
+
+.room-list-row:hover {
+	background-color: rgba(255, 255, 255, .4);
+	cursor: pointer;
+	padding: 8px 0;
+	border-radius: 5px;
 }
 
 .room-list-cell {

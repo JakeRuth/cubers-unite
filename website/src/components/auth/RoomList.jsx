@@ -15,7 +15,7 @@ class RoomList extends React.Component {
 
 		return (
 			<div className='room-list-row-container'>
-				<div className='room-list-row-header room-list-row'>
+				<div className='room-list-row-header'>
 					<div className='room-list-cell'>Name</div>
 					<div className='room-list-cell'>Creator</div>
 					<div className='room-list-cell'>Created At</div>
