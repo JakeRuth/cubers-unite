@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Spinner from '../common/Spinner';
 
@@ -22,16 +23,25 @@ class RoomList extends React.Component {
 					<div className='room-list-cell'>Puzzle Type</div>
 				</div>
 				{
-					this.props.rooms.map((room) => {
+					this.props.rooms.map((room, index) => {
 						// TODO: This string manipulation should be handled in backend endpoint
 						const lastDot = room.createdAt.lastIndexOf('.');
+						console.log(index)
 						return (
-							<div className='room-list-row' key={room.id}>
+							<li
+								className={classNames(
+									'room-list-row',
+									{
+										'room-list-row-first': index === 0,
+									},
+								)}
+								key={room.id}
+							>
 								<div className='room-list-cell'>{room.name}</div>
 								<div className='room-list-cell'>{room.createdBy}</div>
 								<div className='room-list-cell'>{room.createdAt.substr(0, lastDot)}</div>
 								<div className='room-list-cell'>{room.puzzleType}</div>
-							</div>
+							</li>
 						);
 					})
 				}
