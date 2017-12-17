@@ -26,9 +26,9 @@ class HomePageComponent extends React.Component {
       fetchRoomsRequestStatus,
     } = nextProps;
 
-    if (fetchRoomsRequestStatus == ASYNC_STATUS.READY && (
-        attemptRefreshUserSessionRequestStatus != ASYNC_STATUS.READY ||
-        attemptRefreshUserSessionRequestStatus != ASYNC_STATUS.IN_FLIGHT
+    if (fetchRoomsRequestStatus === ASYNC_STATUS.READY && (
+        attemptRefreshUserSessionRequestStatus !== ASYNC_STATUS.READY ||
+        attemptRefreshUserSessionRequestStatus !== ASYNC_STATUS.IN_FLIGHT
     )) {
       this.props.fetchRooms();
     }

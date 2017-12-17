@@ -24,10 +24,30 @@ class HeaderComponent extends React.Component {
     );
   }
 
+  renderForkMeGithub() {
+    return (
+      <div className="app-header-github-container">
+        <a href="https://github.com/JakeRuth/cubers-unite" target="_blank" rel="noopener noreferrer">
+          <div className="app-header-github-link-content">
+            <img
+              className="app-header-github-octocat"
+              height="70"
+              width="80"
+              src="https://s3.amazonaws.com/cubers-unite-website/Octocat.png"
+              alt="GitHub"
+            />
+            <span>Help Build This!</span>
+          </div>
+        </a>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="app-header-container pure-u-1">
         {this.props.userIdToken && this.renderLogoutButton()}
+        {this.renderForkMeGithub()}
         <h1 className="app-header-title">Cubers Unite</h1>
       </div>
     );
