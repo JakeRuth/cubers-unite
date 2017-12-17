@@ -20,8 +20,18 @@ import {ASYNC_STATUS} from '../../constants/AsyncStatus';
 import './HomePage.css';
 
 class HomePageComponent extends React.Component {
-  componentDidMount() {
-    this.props.fetchRooms();
+  componentWillReceiveProps(nextProps) {
+    const {
+      attemptRefreshUserSessionRequestStatus,
+      fetchRoomsRequestStatus,
+    } = nextProps;
+
+    if (fetchRoomsRequestStatus == ASYNC_STATUS.READY && (
+        attemptRefreshUserSessionRequestStatus != ASYNC_STATUS.READY ||
+        attemptRefreshUserSessionRequestStatus != ASYNC_STATUS.IN_FLIGHT
+    )) {
+      this.props.fetchRooms();
+    }
   }
 
   render() {
@@ -64,11 +74,13 @@ HomePageComponent.propTypes = {
   updateName: PropTypes.func.isRequired,
   createRoomRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
   fetchRoomsRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
+  attemptRefreshUserSessionRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     ...state.homePage,
+    attemptRefreshUserSessionRequestStatus: state.login.attemptRefreshUserSessionRequestStatus,
   };
 };
 
