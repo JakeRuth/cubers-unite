@@ -1,6 +1,5 @@
 # cubers-unite
-A web app that gives cubers around the world the ability to solve puzzles together in real time.
-See the work in progress documentation/specs here: https://drive.google.com/drive/folders/0BzeuO4QnYgP3a2tCQ1kyUEpQems
+A web app that gives cubers around the world the ability to solve puzzles together in real time.s
 
 Infrastructure (110% hosted with AWS, main goal is to be very cheap to host):
 - Lambda: Serverless backend.  Goal is to write most functions in python but not opposed to using Java8 or NodeJS
