@@ -23,6 +23,7 @@ class HomePageComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     const {
       attemptRefreshUserSessionRequestStatus,
+      createRoomRequestStatus,
       fetchRoomsRequestStatus,
     } = nextProps;
 
@@ -31,6 +32,13 @@ class HomePageComponent extends React.Component {
         attemptRefreshUserSessionRequestStatus !== ASYNC_STATUS.IN_FLIGHT
     )) {
       this.props.fetchRooms();
+    }
+
+    // if room was just created, get most up to date list of rooms so we can show it
+    if (this.props.createRoomRequestStatus === ASYNC_STATUS.IN_FLIGHT &&
+        createRoomRequestStatus === ASYNC_STATUS.SUCCESS) {
+      this.props.fetchRooms();
+      this.props.toggleCreateRoomModal();
     }
   }
 

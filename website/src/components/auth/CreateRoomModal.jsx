@@ -54,7 +54,7 @@ class CreateRoomModal extends React.Component {
             },
           ]}
         />
-      {message}
+        {message}
       </div>
     );
   }

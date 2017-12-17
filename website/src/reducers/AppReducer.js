@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
 import confirmSignUpReducer from './ConfirmSignUp';
-import homePageReducer from './HomePage';
+import homePageReducer from './Home';
 import loginReducer from './Login';
 import signUpReducer from './SignUp';
 
