@@ -11,6 +11,7 @@ import SignUpPage from './pre-auth/SignUpPage';
 import ConfirmSignUpPage from './pre-auth/ConfirmSignUpPage';
 import LoginPage from './pre-auth/LoginPage';
 import HomePage from './auth/HomePage';
+import RoomPage from './auth/room/RoomPage';
 
 import './App.css';
 
@@ -29,6 +30,7 @@ export default class App extends React.Component {
 						<Route path="/login" component={LoginPage} />
 						<Route path="/sign-up" component={SignUpPage} />
 						<Route path="/confirm-sign-up" component={ConfirmSignUpPage} />
+						<Route path="/room" component={RoomPage} />
 					</div>
 				</BrowserRouter>
 			</Provider>

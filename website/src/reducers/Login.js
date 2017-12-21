@@ -14,7 +14,7 @@ const initialState = {
 	attemptRefreshUserSessionRequestStatus: ASYNC_STATUS.READY,
 };
 
-function loginReducer(state = initialState, action) {
+export function loginReducer(state = initialState, action) {
 	switch(action.type) {
 		case UPDATE_USERNAME:
 			return {
@@ -42,5 +42,3 @@ function loginReducer(state = initialState, action) {
 			return state;
 	}
 }
-
-export default loginReducer;

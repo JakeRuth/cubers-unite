@@ -1,15 +1,17 @@
 import {combineReducers} from 'redux';
 
-import confirmSignUpReducer from './ConfirmSignUp';
-import homePageReducer from './Home';
-import loginReducer from './Login';
-import signUpReducer from './SignUp';
+import {confirmSignUpReducer} from './ConfirmSignUp';
+import {homePageReducer} from './Home';
+import {loginReducer} from './Login';
+import {roomReducer} from './Room';
+import {signUpReducer} from './SignUp';
 
 const AppReducer = combineReducers({
 	confirmSignUp: confirmSignUpReducer,
 	homePage: homePageReducer,
-	signUp: signUpReducer,
 	login: loginReducer,
+	room: roomReducer,
+	signUp: signUpReducer,
 });
 
 export default AppReducer;

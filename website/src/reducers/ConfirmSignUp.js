@@ -12,7 +12,7 @@ const initialState = {
 	confirmSignUpRequestStatus: ASYNC_STATUS.READY,
 };
 
-function confirmSignUpReducer(state = initialState, action) {
+export function confirmSignUpReducer(state = initialState, action) {
 	switch(action.type) {
 		case UPDATE_USERNAME:
 			return {
@@ -33,5 +33,3 @@ function confirmSignUpReducer(state = initialState, action) {
 			return state;
 	}
 }
-
-export default confirmSignUpReducer;

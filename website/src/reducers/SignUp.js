@@ -15,7 +15,7 @@ const initialState = {
 	user: null,
 };
 
-function signUpReducer(state = initialState, action) {
+export function signUpReducer(state = initialState, action) {
 	switch(action.type) {
 		case UPDATE_EMAIL:
 			return {
@@ -42,5 +42,3 @@ function signUpReducer(state = initialState, action) {
 			return state;
 	}
 }
-
-export default signUpReducer;

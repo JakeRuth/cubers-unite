@@ -1,0 +1,36 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
+import Page from'../../Page';
+
+// import './RoomPage.css';
+
+class RoomPageComponent extends React.Component {
+  render() {
+    return (
+      <Page push={this.props.history.push}>
+        <div>{JSON.stringify(this.props.currentRoom)}</div>
+      </Page>
+    );
+  }
+}
+
+RoomPageComponent.propTypes = {
+  currentRoom: PropTypes.object,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    ...state.room,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // TODO: This will have dispatched actions soon...
+  };
+};
+
+const RoomPage = connect(mapStateToProps, mapDispatchToProps)(RoomPageComponent);
+export default RoomPage;

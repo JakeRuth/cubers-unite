@@ -15,7 +15,7 @@ const initialState = {
 	fetchRoomsRequestStatus: ASYNC_STATUS.READY,
 };
 
-function homePageReducer(state = initialState, action) {
+export function homePageReducer(state = initialState, action) {
 	switch(action.type) {
 		case TOGGLE_CREATE_ROOM_MODAL:
 			return {
@@ -45,5 +45,3 @@ function homePageReducer(state = initialState, action) {
 			return state;
 	}
 }
-
-export default homePageReducer;

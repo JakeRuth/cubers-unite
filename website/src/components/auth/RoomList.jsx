@@ -9,6 +9,11 @@ import {ASYNC_STATUS} from '../../constants/AsyncStatus';
 import './RoomList.css';
 
 class RoomList extends React.Component {
+	onRoomClick = (room) => {
+		this.props.push('/room');
+		this.props.updateCurrentRoom(room);
+	}
+
 	renderList() {
 		if (!this.props.rooms.length) {
 			return 'No active rooms, you should create one!';
@@ -26,7 +31,6 @@ class RoomList extends React.Component {
 					this.props.rooms.map((room, index) => {
 						// TODO: This string manipulation should be handled in backend endpoint
 						const lastDot = room.createdAt.lastIndexOf('.');
-						console.log(index)
 						return (
 							<li
 								className={classNames(
@@ -36,6 +40,7 @@ class RoomList extends React.Component {
 									},
 								)}
 								key={room.id}
+								onClick={() => this.onRoomClick(room)}
 							>
 								<div className='room-list-cell'>{room.name}</div>
 								<div className='room-list-cell'>{room.createdBy}</div>
@@ -65,7 +70,9 @@ class RoomList extends React.Component {
 
 RoomList.propTypes = {
 	rooms: PropTypes.array.isRequired,
+	push: PropTypes.func.isRequired,
   fetchRoomsRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
+	updateCurrentRoom: PropTypes.func.isRequired,
 };
 
 export default RoomList;

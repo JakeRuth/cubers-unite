@@ -13,6 +13,7 @@ import {
   createRoom,
   fetchRooms,
 } from '../../actions/HomePageActions';
+import {updateCurrentRoom} from '../../actions/RoomActions';
 
 import {ButtonSize} from '../../constants/ButtonSize';
 import {ASYNC_STATUS} from '../../constants/AsyncStatus';
@@ -54,7 +55,9 @@ class HomePageComponent extends React.Component {
         	/>
           <RoomList
             fetchRoomsRequestStatus={this.props.fetchRoomsRequestStatus}
+            push={this.props.history.push}
             rooms={this.props.rooms}
+            updateCurrentRoom={this.props.updateCurrentRoom}
           />
 
           {/* Modals */}
@@ -80,6 +83,7 @@ HomePageComponent.propTypes = {
 	showCreateRoomModal: PropTypes.bool.isRequired,
 	toggleCreateRoomModal: PropTypes.func.isRequired,
   updateName: PropTypes.func.isRequired,
+  updateCurrentRoom: PropTypes.func.isRequired,
   createRoomRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
   fetchRoomsRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
   attemptRefreshUserSessionRequestStatus: PropTypes.oneOf(Object.values(ASYNC_STATUS)).isRequired,
@@ -98,6 +102,7 @@ const mapDispatchToProps = (dispatch) => {
       fetchRooms: () => dispatch(fetchRooms()),
       toggleCreateRoomModal: () => dispatch(toggleCreateRoomModal()),
       updateName: (event) => dispatch(updateName(event)),
+      updateCurrentRoom: (room) => dispatch(updateCurrentRoom(room)),
   };
 };
 
