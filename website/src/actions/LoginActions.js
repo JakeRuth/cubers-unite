@@ -6,7 +6,7 @@ import {
 	localStoragePut,
 	localStorageClear,
 	localStorageGet,
-} from '../localStorageWrapper';
+} from '../helpers/localStorageWrapper';
 
 import {ASYNC_STATUS} from '../constants/AsyncStatus';
 import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';

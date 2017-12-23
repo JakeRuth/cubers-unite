@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {localStorageGet} from '../localStorageWrapper';
+import {localStorageGet} from '../helpers/localStorageWrapper';
 
 import {
   logout,

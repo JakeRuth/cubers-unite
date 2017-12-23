@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-import {LOCAL_STORAGE_KEYS} from './constants/LocalStorageKeys';
+import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 
 import {localStorageGet} from './localStorageWrapper';
 
