@@ -1,6 +1,10 @@
 # cubers-unite
 A web app that gives cubers around the world the ability to solve puzzles together in real time.s
 
+This web app is still an undeveloped baby, but the ground work is laid out to start to efficiently create new pages/features etc.  Here's a screenshot of the homepage.  Room page in progress!
+
+![alt text](homepage.png)
+
 Infrastructure (110% hosted with AWS, main goal is to be very cheap to host):
 - Lambda: Serverless backend.  Goal is to write most functions in python but not opposed to using Java8 or NodeJS
 - S3: Host website and any other static content like user picture icons etc that the web app needs access to.
