@@ -24,6 +24,7 @@ export default class App extends React.Component {
 				<BrowserRouter>
 					<div>
 						<Header />
+		        <hr/>
 
 						<Route exact path="/" component={HomePage} />
 						<Route path="/home" component={HomePage} />
