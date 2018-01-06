@@ -1,5 +1,5 @@
 # cubers-unite
-A web app that gives cubers around the world the ability to solve puzzles together in real time.s
+A web app that gives cubers around the world the ability to solve puzzles together in real time.
 
 This web app is still an undeveloped baby, but the ground work is laid out to start efficiently creating new pages/features etc.  Here's a screenshot of the homepage.  Room/Solving page in progress!
 
