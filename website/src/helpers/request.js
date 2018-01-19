@@ -4,7 +4,7 @@ import {LOCAL_STORAGE_KEYS} from '../constants/LocalStorageKeys';
 
 import {localStorageGet} from './localStorageWrapper';
 
-const baseApiUrl = 'https://x7dn73ahp4.execute-api.us-east-1.amazonaws.com/dev';
+const baseApiUrl = 'https://u3np78no97.execute-api.us-east-1.amazonaws.com/dev';
 
 export const requestWrapper = {
   post: (url, data, callback) => {

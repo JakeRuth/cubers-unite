@@ -1,5 +1,7 @@
 import json
 import boto3
+import uuid
+import datetime
 
 # This function is triggered automatically in aws directly after a user confirms their verification code
 def handler(event, context):
@@ -9,8 +11,10 @@ def handler(event, context):
     # save user to the database
     table.put_item(
         Item={
+            'id': str(uuid.uuid4()),
             'username': event['userName'],
-            'email': event['request']['userAttributes']['email']
+            'email': event['request']['userAttributes']['email'],
+            'createdAt': str(datetime.datetime.utcnow()),
         }
     )
 

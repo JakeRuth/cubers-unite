@@ -19,16 +19,20 @@ functions:
 
 resources:
   Resources:
-    userTable:
+    UserTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: User
         AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
           - AttributeName: email
             AttributeType: S
         KeySchema:
-          - AttributeName: email
+          - AttributeName: id
             KeyType: HASH
+          - AttributeName: email
+            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
