@@ -7,8 +7,8 @@ import {
 } from 'amazon-cognito-identity-js';
 
 const poolData = {
-  UserPoolId : 'us-east-1_v9CT8tYOc',
-  ClientId : '2pdkvqkue2j4da8mekhlgbqkpj',
+  UserPoolId : 'us-east-1_zDIhReJTS',
+  ClientId : '5266h5pke9tnua63fhpgi491h',
 };
 
 /*

@@ -23,7 +23,7 @@ functions:
           path: room/create
           method: post
           authorizer:
-            arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_v9CT8tYOc
+            arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_zDIhReJTS
           cors:
             origins:
               - '*'
@@ -38,7 +38,7 @@ functions:
           path: room/fetch
           method: get
           authorizer:
-            arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_v9CT8tYOc
+            arn: arn:aws:cognito-idp:us-east-1:906644655132:userpool/us-east-1_zDIhReJTS
           cors:
             origins:
               - '*'
