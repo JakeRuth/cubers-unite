@@ -7,17 +7,21 @@ import Page from'../../common/Page';
 // import './RoomPage.css';
 
 class RoomPageComponent extends React.Component {
+  componentWillMount() {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <Page push={this.props.history.push}>
-        <div>{JSON.stringify(this.props.currentRoom)}</div>
+        <div>{this.props.currentRoom ? JSON.stringify(this.props.currentRoom) : ''}</div>
       </Page>
     );
   }
 }
 
 RoomPageComponent.propTypes = {
-  currentRoom: PropTypes.object,
+  currentRoom: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
