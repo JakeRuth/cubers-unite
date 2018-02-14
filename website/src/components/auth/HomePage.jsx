@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Page from'../Page';
 import CreateRoomModal from './CreateRoomModal';
 import RoomList from './RoomList';
+import Page from'../common/Page';
 import Button from '../common/Button';
 
 import {

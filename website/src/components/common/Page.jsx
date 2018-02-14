@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {attemptRefreshUserSession} from '../actions/LoginActions';
+import {attemptRefreshUserSession} from '../../actions/LoginActions';
 
-import Spinner from './common/Spinner';
+import Spinner from './Spinner';
 
-import {ASYNC_STATUS} from '../constants/AsyncStatus';
+import {ASYNC_STATUS} from '../../constants/AsyncStatus';
 
 import './Page.css';
 

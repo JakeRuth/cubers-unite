@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Page from'../../Page';
+import Page from'../../common/Page';
 
 // import './RoomPage.css';
 
