@@ -34,6 +34,7 @@ export function createRoom(name) {
       {
         name: name,
 				username: localStorageGet(LOCAL_STORAGE_KEYS.USERNAME),
+				userId: localStorageGet(LOCAL_STORAGE_KEYS.USER_ID),
       },
 			(err, res) => {
 				dispatch({
