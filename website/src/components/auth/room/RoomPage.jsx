@@ -7,10 +7,6 @@ import Page from'../../common/Page';
 // import './RoomPage.css';
 
 class RoomPageComponent extends React.Component {
-  componentWillMount() {
-    this.props.history.goBack();
-  }
-
   render() {
     return (
       <Page push={this.props.history.push}>
